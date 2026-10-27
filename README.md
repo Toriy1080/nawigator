@@ -171,24 +171,7 @@ zatrudnienia, role.
 - Treści wielojęzyczne: minimum dwa języki, słownik około 50-100 terminów.
 - Źródła publiczne: gov.pl, biznes.gov.pl, strony Urzędu do Spraw Cudzoziemców, ZUS i
 NFZ, zbiory dane.gov.pl, strony urzędów. Przepisów nie kopiujemy, wystarczy własne streszczenie i link.
-## 11. Etapy realizacji
-Założenie: jedna osoba, około 10-12 godzin tygodniowo, razem około 120-150 godzin (10-12 tygodni).
-1. Analiza i projekt (15 h): wymagania, scenariusze, diagram ERD, makiety.
-2. Baza danych (12 h): schemat, klucze, indeksy, zapytanie rekurencyjne po grafie.
-3. Zbieranie danych (25 h): pięć scenariuszy, procedury, dokumenty, źródła.
-4. Backend (30 h): logowanie, profil, generowanie planu, lista kontrolna, API.
-5. Frontend (25 h): ekrany użytkownika, wielojęzyczność, wyszukiwarka.
-6. Panel administratora (15 h): zarządzanie danymi, tłumaczenia, dziennik zmian.
-7. Testy (10 h): logika grafu i scenariusze.
-8. Dokumentacja i prezentacja (10 h).
-**Kamienie milowe:**
-- tygodnie 1-2: zatwierdzone wymagania i ERD,
-- tygodnie 3-6: pionowy plasterek, czyli jeden scenariusz od bazy po ekran użytkownika,
-- tygodnie 7-9: pozostałe cztery scenariusze i panel administratora,
-- tygodnie 10-12: testy, dokumentacja, prezentacja.
-- Jeśli zabraknie czasu, ograniczamy w tej kolejności: słownik terminów, wyszukiwarka,
-role dodatkowe, trzeci język, liczba scenariuszy z pięciu do trzech. Nie ograniczamy: generowania planu z grafu, listy kontrolnej i panelu administratora.
-## 12. Ryzyka
+## 11. Ryzyka
 - Nieaktualne dane. Źródło i data przy każdym rekordzie, lista „do sprawdzenia”,
 interwały przeglądu.
 - Zbyt szeroki zakres. Pionowy plasterek najpierw, pięć scenariuszy w MVP.
@@ -198,9 +181,9 @@ pierwszego tygodnia.
 komunikat o charakterze informacyjnym.
 - Dane wrażliwe (narodowość). Zgoda, minimalizacja, możliwość usunięcia konta.
 - Cykle w zależnościach. Walidacja przy zapisie.
-## 13. Kryteria odbioru
+## 12. Kryteria odbioru
 Klient rejestruje się, podaje narodowość i otrzymuje poprawny plan dla każdego z pięciu scenariuszy. Zmiana profilu przelicza plan bez utraty wykonanych kroków. Kroki wymagające poprzednich są zablokowane. Interfejs działa w co najmniej dwóch językach. Administrator dodaje procedurę, zależność i tłumaczenie bez zmiany kodu, a zmiana trafia do dziennika. Rekord ze starą datą weryfikacji pojawia się na liście „do sprawdzenia”. Próba zapisu cyklu w zależnościach jest zablokowana. Użytkownik bez uprawnień nie ma dostępu do funkcji administracyjnych (sprawdzane na serwerze). Baza liczy co najmniej 20 tabel z udokumentowanymi relacjami (diagram ERD).
-## 14. Rozwój po MVP
+## 13. Rozwój po MVP
 - przypomnienia o terminach (np. wygasająca karta pobytu),
 - mapa urzędów z godzinami i rezerwacją online,
 - automatyczne wykrywanie zmian na stronach źródłowych (porównanie skrótów
