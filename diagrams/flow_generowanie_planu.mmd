@@ -1,0 +1,82 @@
+%% Activity/Flow Diagram: Algorytm generowania planu
+%% Nawigator procedur administracyjnych
+
+flowchart TD
+    START(["▶ START: Generowanie planu"])
+
+    START --> A["Pobierz profil użytkownika\n(narodowość, podstawa pobytu,\ncel pobytu, posiadane dokumenty)"]
+
+    A --> B["Pobierz sytuację życiową użytkownika\n(np. student spoza UE,\npracownik z UE, itd.)"]
+
+    B --> C["Zapytaj bazę o procedury\ndla danej sytuacji życiowej\n(SELECT * FROM procedura\nWHERE sytuacja_zyciowa = ...)"]
+
+    C --> D{"Znaleziono\nprocedury?"}
+
+    D -- "Nie" --> E["Zwróć pusty plan\nz komunikatem:\n'Brak procedur dla\nTwojej sytuacji'"]
+    E --> ENDX(["⏹ KONIEC"])
+
+    D -- "Tak" --> F["Dla każdej procedury:\nSprawdź reguły dostępności"]
+
+    F --> G{"Narodowość\nużytkownika\npasuje?"}
+    G -- "Nie" --> H["Odrzuć procedurę\n(nie dotyczy tej narodowości)"]
+    G -- "Tak" --> I{"Podstawa pobytu\npasuje?"}
+
+    I -- "Nie" --> H
+    I -- "Tak" --> J{"Cel pobytu\npasuje?"}
+
+    J -- "Nie" --> H
+    J -- "Tak" --> K["Dodaj procedurę\ndo listy applicable"]
+
+    H --> L{"Kolejna\nprocedura?"}
+    K --> L
+
+    L -- "Tak" --> F
+    L -- "Nie" --> M{"Lista applicable\njest pusta?"}
+
+    M -- "Tak" --> E
+
+    M -- "Nie" --> N["Zbuduj graf zależności\npomiędzy procedurami\n(dependency_graph)"]
+
+    N --> O["Sprawdź graf\npod kątem cykli\n(DFS / algorytm Kahna)"]
+
+    O --> P{"Wykryto\ncykl?"}
+
+    P -- "Tak" --> Q["⚠️ BŁĄD: Cykliczna zależność\nw grafie procedur.\nZgłoś do administratora.\nZaloguj błąd."]
+    Q --> ENDX
+
+    P -- "Nie" --> R["Sortowanie topologiczne\n(Topological Sort)\nUstaw kolejność procedur"]
+
+    R --> S["Pobierz dokumenty użytkownika\n(SELECT * FROM dokument_uzytkownika\nWHERE uzytkownik_id = ...)"]
+
+    S --> T["Dla każdego kroku\nw posortowanych procedurach:"]
+
+    T --> U{"Krok już\nukończony?\n(dokument\nposiadany)"}
+
+    U -- "Tak" --> V["Oznacz krok jako:\n✅ WYKONANY\n(status = 'wykonany',\ncompleted_at = NOW())"]
+
+    U -- "Nie" --> W{"Wszystkie\npoprzedniki\nukończone?"}
+
+    W -- "Tak" --> X["Oznacz krok jako:\n🟢 DOSTĘPNY\n(status = 'dostepny')"]
+
+    W -- "Nie" --> Y["Oznacz krok jako:\n🔒 ZABLOKOWANY\n(status = 'zablokowany')"]
+
+    V --> Z{"Kolejny\nkrok?"}
+    X --> Z
+    Y --> Z
+
+    Z -- "Tak" --> T
+    Z -- "Nie" --> AA["Identyfikuj kroki równoległe:\nKroki bez wzajemnych zależności\nktóre są 'dostępny' jednocześnie"]
+
+    AA --> BB["Zbuduj uporządkowany plan:\n• Kolejność topologiczna\n• Grupy kroków równoległych\n• Statusy kroków\n• Szacowane czasy"]
+
+    BB --> CC["Zwróć plan do użytkownika"]
+
+    CC --> ENDX
+
+    style START fill:#4CAF50,color:#fff
+    style ENDX fill:#9E9E9E,color:#fff
+    style Q fill:#f44336,color:#fff
+    style E fill:#FF9800,color:#fff
+    style V fill:#4CAF50,color:#fff
+    style X fill:#2196F3,color:#fff
+    style Y fill:#FF5722,color:#fff

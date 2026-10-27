@@ -1,0 +1,120 @@
+sequenceDiagram
+    title Generowanie planu procedur (CORE FEATURE)
+
+    actor K as Klient
+    participant FE as Frontend
+    participant BE as Backend
+    participant GZ as Graf Zależności
+    participant BD as Baza Danych
+
+    %% ── WYBÓR SYTUACJI ŻYCIOWEJ ──────────────────────────────
+    rect rgb(220, 240, 255)
+        Note over K, BD: Klient wybiera sytuację życiową
+
+        K->>FE: Wybiera sytuację życiową<br/>(np. "Przyjazd do Polski")
+        FE->>BE: POST /api/plan/generuj<br/>{sytuacja_id, uzytkownik_id}
+    end
+
+    %% ── POBRANIE PROCEDUR DLA SYTUACJI ───────────────────────
+    rect rgb(230, 255, 230)
+        Note over BE, BD: Pobranie procedur przypisanych do sytuacji
+
+        BE->>BD: SELECT p.* FROM procedury p<br/>JOIN sytuacje_procedury sp<br/>ON p.id = sp.procedura_id<br/>WHERE sp.sytuacja_id = ?<br/>AND p.status = 'aktywna'
+        BD-->>BE: Lista procedur dla sytuacji
+    end
+
+    %% ── POBRANIE PROFILU UŻYTKOWNIKA ─────────────────────────
+    rect rgb(245, 235, 255)
+        Note over BE, BD: Pobranie profilu do filtrowania reguł
+
+        BE->>BD: SELECT narodowosc, podstawa_pobytu,<br/>cel_pobytu FROM profile<br/>WHERE uzytkownik_id = ?
+        BD-->>BE: Profil użytkownika<br/>{narodowość, podstawa_pobytu, cel_pobytu}
+    end
+
+    %% ── FILTROWANIE WG REGUŁ DOSTĘPNOŚCI ─────────────────────
+    rect rgb(255, 245, 220)
+        Note over BE, BD: Filtrowanie procedur wg reguł dostępności
+
+        BE->>BD: SELECT * FROM reguly_dostepnosci<br/>WHERE procedura_id IN (...)
+        BD-->>BE: Lista reguł dostępności
+
+        BE->>BE: Zastosuj reguły dostępności:<br/>• Filtruj wg narodowości<br/> (EU/nie-EU → inne procedury)<br/>• Filtruj wg podstawy pobytu<br/> (wiza, karta pobytu, ruch bezwizowy)<br/>• Filtruj wg celu pobytu<br/> (praca, studia, łączenie rodzin)
+
+        Note right of BE: Procedury niespełniające reguł<br/>są usuwane z listy
+    end
+
+    %% ── ODFILTROWANIE JUŻ UKOŃCZONYCH ────────────────────────
+    rect rgb(255, 230, 230)
+        Note over BE, BD: Odfiltrowanie procedur już ukończonych
+
+        BE->>BD: SELECT procedura_id, status<br/>FROM kroki_planu<br/>WHERE uzytkownik_id = ?<br/>AND status = 'ukonczone'
+        BD-->>BE: Lista ukończonych procedur
+
+        BE->>BE: Usuń z listy procedury<br/>już oznaczone jako ukończone
+    end
+
+    %% ── BUDOWANIE GRAFU ZALEŻNOŚCI ───────────────────────────
+    rect rgb(220, 250, 245)
+        Note over BE, GZ: Budowanie i analiza grafu zależności
+
+        BE->>BD: WITH RECURSIVE drzewo_zaleznosci AS (<br/>  SELECT procedura_id, wymaga_id, 1 AS poziom<br/>  FROM zaleznosci<br/>  WHERE procedura_id IN (...)<br/>  UNION ALL<br/>  SELECT z.procedura_id, z.wymaga_id, d.poziom+1<br/>  FROM zaleznosci z<br/>  JOIN drzewo_zaleznosci d<br/>  ON z.procedura_id = d.wymaga_id<br/>)<br/>SELECT * FROM drzewo_zaleznosci
+        BD-->>BE: Pełne drzewo zależności<br/>(wszystkie poziomy rekurencji)
+
+        BE->>GZ: Zbuduj graf zależności<br/>z wyników CTE
+
+        GZ->>GZ: Detekcja cykli w grafie<br/>(algorytm DFS / Kahn)
+
+        alt Wykryto cykl w grafie
+            GZ-->>BE: BŁĄD: Wykryto cykl!<br/>{cykl: [A → B → C → A]}
+            BE-->>FE: 500 Internal Server Error<br/>"Wykryto cykl w zależnościach procedur"
+            FE-->>K: Komunikat o błędzie wewnętrznym<br/>"Nie można wygenerować planu"
+        else Brak cykli
+            GZ-->>BE: Graf poprawny, brak cykli
+
+            GZ->>GZ: Sortowanie topologiczne<br/>(ustal kolejność procedur)
+
+            GZ-->>BE: Posortowana lista procedur<br/>[wymóg1, wymóg2, ..., cel]
+
+            GZ->>GZ: Identyfikacja kroków równoległych<br/>(procedury niezależne od siebie<br/>na tym samym poziomie)
+
+            GZ-->>BE: Mapa równoległości<br/>{poziom_1: [A, B], poziom_2: [C], ...}
+        end
+    end
+
+    %% ── SPRAWDZENIE ISTNIEJĄCYCH DOKUMENTÓW ──────────────────
+    rect rgb(255, 240, 245)
+        Note over BE, BD: Sprawdzenie dokumentów użytkownika
+
+        BE->>BD: SELECT d.id, d.typ, d.procedura_id<br/>FROM dokumenty d<br/>WHERE d.uzytkownik_id = ?<br/>AND d.status = 'wazny'
+        BD-->>BE: Lista ważnych dokumentów użytkownika
+
+        BE->>BE: Dla każdej procedury w planie:<br/>sprawdź czy wymagane dokumenty<br/>są już dostarczone
+
+        BE->>BE: Oznacz kroki ze spełnionymi<br/>wymaganiami dokumentowymi<br/>jako możliwe do pominięcia
+    end
+
+    %% ── BUDOWANIE FINALNEGO PLANU ────────────────────────────
+    rect rgb(240, 255, 240)
+        Note over BE, BD: Kompilacja i zapis planu
+
+        BE->>BE: Buduj plan końcowy:<br/>• Kolejność wg sortowania topologicznego<br/>• Oznacz kroki równoległe<br/>• Status: zablokowany / dostępny / pominięty<br/>• Krok dostępny gdy wszystkie<br/>  zależności ukończone/pominięte
+
+        loop Dla każdego kroku w planie
+            BE->>BD: INSERT INTO kroki_planu<br/>(uzytkownik_id, procedura_id, kolejnosc,<br/>status, mozliwy_rownolegle,<br/>zablokowany_przez)<br/>ON CONFLICT DO UPDATE
+            BD-->>BE: OK
+        end
+
+        BE->>BD: INSERT INTO plany<br/>(uzytkownik_id, sytuacja_id,<br/>data_wygenerowania, wersja)
+        BD-->>BE: plan_id
+    end
+
+    %% ── ODPOWIEDŹ DO KLIENTA ─────────────────────────────────
+    rect rgb(220, 240, 255)
+        Note over K, FE: Prezentacja planu
+
+        BE-->>FE: 200 OK<br/>{plan_id, kroki: [{<br/>  procedura, kolejnosc,<br/>  status, rownolegle,<br/>  zablokowany_przez,<br/>  dokumenty_spelione<br/>}]}
+
+        FE->>FE: Renderowanie planu:<br/>• Lista kroków z kolejnością<br/>• Kolorowanie statusów<br/>  (zielony=dostępny, szary=zablokowany)<br/>• Oznaczenie kroków równoległych<br/>• Pasek postępu
+
+        FE-->>K: Wyświetlenie planu procedur<br/>z postępem i statusami
+    end

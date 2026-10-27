@@ -1,0 +1,33 @@
+%% Nawigator procedur administracyjnych — Diagram wdrożeniowy
+flowchart LR
+
+    subgraph CLIENT["Klient"]
+        BROWSER["🌐 Przeglądarka\n(mobile / desktop)"]
+    end
+
+    subgraph WEBSERVER["Serwer WWW"]
+        NGINX["Nginx\n• reverse proxy\n• pliki statyczne\n• terminacja HTTPS\n• rate limiting"]
+    end
+
+    subgraph APPSERVER["Serwer aplikacji"]
+        APP["Aplikacja backendowa\n• logika biznesowa\n• API REST\n• sesje\n• autoryzacja"]
+    end
+
+    subgraph DBSERVER["Serwer bazy danych"]
+        PG[("PostgreSQL\n• dane użytkowników\n• procedury\n• tłumaczenia\n• plany\n• sesje")]
+    end
+
+    BROWSER -- "HTTPS (port 443)\nTLS 1.2+" --> NGINX
+    NGINX -- "HTTP (port wewnętrzny)\nproxy_pass" --> APP
+    APP -- "TCP (port 5432)\nzapytania parametryzowane" --> PG
+
+    %% Styling
+    classDef client fill:#4a90d9,stroke:#2c5f8a,color:#fff
+    classDef web fill:#5ba85b,stroke:#3d7a3d,color:#fff
+    classDef app fill:#e6a32e,stroke:#b07d1a,color:#fff
+    classDef db fill:#d94a4a,stroke:#a33030,color:#fff
+
+    class BROWSER client
+    class NGINX web
+    class APP app
+    class PG db

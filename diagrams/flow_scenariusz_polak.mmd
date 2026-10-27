@@ -1,0 +1,51 @@
+flowchart TD
+    classDef startEnd fill:#1e293b,stroke:#0f172a,stroke-width:2px,color:#fff;
+    classDef mainStep fill:#2563eb,stroke:#1d4ed8,stroke-width:2px,color:#fff;
+    classDef parallelTrack fill:#0891b2,stroke:#0e7490,stroke-width:2px,color:#fff;
+    classDef decision fill:#d97706,stroke:#b45309,stroke-width:2px,color:#fff;
+    classDef taxTrack fill:#475569,stroke:#334155,stroke-width:2px,color:#fff;
+
+    Start([Powrót do Polski z zagranicy]):::startEnd --> CheckID{"Czy posiada ważny polski dowód/paszport?"}:::decision
+
+    subgraph Faza1 ["Faza 1: Adres i Tożsamość"]
+        CheckID -- Nie --> WniosekDowod["Wniosek o nowy dowód osobisty<br/>(Urząd Gminy / Dzielnicy)"]:::mainStep
+        CheckID -- Tak --> Meldunek["Zameldowanie na pobyt stały lub czasowy<br/>(online przez gov.pl lub w urzędzie gminy)"]:::mainStep
+        WniosekDowod --> Meldunek
+        Meldunek --> ePUAP["Aktualizacja / Założenie Profilu Zaufanego (mObywatel)"]:::mainStep
+    end
+
+    Meldunek --> Fork{Równoległe formalności powrotowe}:::decision
+
+    subgraph Faza2_NFZ ["Ścieżka Zdrowotna (NFZ)"]
+        Fork --> CheckStatus{"Forma ubezpieczenia"}:::decision
+        CheckStatus -- Nowa praca w PL --> ZgłoszenieZUS["Zgłoszenie do ZUS przez nowego pracodawcę"]:::parallelTrack
+        CheckStatus -- Poszukiwanie pracy --> RejPUP["Rejestracja w Powiatowym Urzędzie Pracy (PUP)<br/>- uzyskanie ubezpieczenia zdrowotnego"]:::parallelTrack
+        CheckStatus -- Dobrowolne --> DobrowolneNFZ["Umowa dobrowolnego ubezpieczenia zdrowotnego z NFZ"]:::parallelTrack
+        
+        ZgłoszenieZUS --> WyborPOZ["Wybór lekarza podstawowej opieki zdrowotnej (POZ)"]:::parallelTrack
+        RejPUP --> WyborPOZ
+        DobrowolneNFZ --> WyborPOZ
+    end
+
+    subgraph Faza2_Podatki ["Ścieżka Podatkowa i Rezydencja"]
+        Fork --> RezydencjaPodatkowa["Ustalenie rezydencji podatkowej w Polsce<br/>(ośrodek interesów życiowych)"]:::taxTrack
+        RezydencjaPodatkowa --> UlgaNaPowrot{"Czy kwalifikuje się do 'Ulgi na powrót'?<br/>(zwolnienie z PIT do 85 528 PLN rocznie przez 4 lata)"}:::decision
+        UlgaNaPowrot -- Tak --> WniosekUlga["Złożenie oświadczenia płatnikowi (pracodawcy)<br/>o stosowanie ulgi na powrót"]:::taxTrack
+        UlgaNaPowrot -- Nie --> StandardPIT["Standardowe rozliczanie PIT w Polsce<br/>(ewentualna metoda unikania podwójnego opodatkowania)"]:::taxTrack
+    end
+
+    subgraph Faza2_Dzieci ["Ścieżka Rodzinna (jeśli powrót z dziećmi)"]
+        Fork --> CheckDzieci{"Czy powrót z dziećmi?"}:::decision
+        CheckDzieci -- Tak --> Szkola["Zapis dzieci do polskiej szkoły<br/>- tłumaczenie świadectw szkolnych<br/>- ew. klasy przygotowawcze"]:::parallelTrack
+        CheckDzieci -- Tak --> SwiadczeniaPL["Wnioski o świadczenia (800+, RKO)"]:::parallelTrack
+        CheckDzieci -- Nie --> BezDzieci[Brak kroków rodzinnych]:::parallelTrack
+    end
+
+    WyborPOZ --> Done([Formalności powrotowe zakończone pomyślnie]):::startEnd
+    WniosekUlga --> Done
+    StandardPIT --> Done
+    Szkola --> Done
+    SwiadczeniaPL --> Done
+    BezDzieci --> Done
+
+    class Faza1,Faza2_NFZ,Faza2_Podatki,Faza2_Dzieci fill:#f8fafc,stroke:#cbd5e1,stroke-width:1px;

@@ -1,0 +1,105 @@
+sequenceDiagram
+    title Rejestracja i logowanie użytkownika
+
+    actor U as Użytkownik
+    participant FE as Frontend
+    participant BE as Backend
+    participant BD as Baza Danych
+
+    %% ── REJESTRACJA ──────────────────────────────────────────
+    rect rgb(220, 240, 255)
+        Note over U, BD: Rejestracja nowego użytkownika
+
+        U->>FE: Wypełnia formularz rejestracji<br/>(email, hasło, narodowość, zgoda RODO)
+        FE->>FE: Walidacja po stronie klienta<br/>(format email, siła hasła, wymagane pola)
+        FE->>BE: POST /api/auth/register<br/>{email, hasło, narodowość, zgoda_rodo}
+
+        BE->>BE: Walidacja danych wejściowych<br/>(format email, minimalna długość hasła)
+
+        BE->>BD: SELECT id FROM uzytkownicy<br/>WHERE email = ?
+        alt Email już istnieje
+            BD-->>BE: Zwraca rekord
+            BE-->>FE: 409 Conflict<br/>"Nie można utworzyć konta"
+            FE-->>U: Wyświetla ogólny komunikat błędu<br/>(nie ujawnia czy email zajęty)
+        else Email dostępny
+            BD-->>BE: Brak wyników
+
+            BE->>BE: Hashowanie hasła algorytmem Argon2id<br/>(salt, iteracje, pamięć)
+
+            BE->>BD: BEGIN TRANSACTION
+
+            BE->>BD: INSERT INTO uzytkownicy<br/>(email, hash_hasla, data_rejestracji)
+            BD-->>BE: id nowego użytkownika
+
+            BE->>BD: INSERT INTO profile<br/>(uzytkownik_id, narodowosc, zgoda_rodo,<br/>data_zgody_rodo)
+            BD-->>BE: Potwierdzenie zapisu profilu
+
+            BE->>BD: COMMIT
+
+            BE-->>FE: 201 Created<br/>{uzytkownik_id, email}
+            FE-->>U: Wyświetla potwierdzenie rejestracji<br/>"Konto utworzone pomyślnie"
+        end
+    end
+
+    %% ── LOGOWANIE ────────────────────────────────────────────
+    rect rgb(255, 245, 220)
+        Note over U, BD: Logowanie użytkownika
+
+        U->>FE: Wprowadza email i hasło
+        FE->>BE: POST /api/auth/login<br/>{email, hasło}
+
+        BE->>BD: SELECT id, hash_hasla, liczba_prob,<br/>blokada_do FROM uzytkownicy<br/>WHERE email = ?
+
+        alt Użytkownik nie znaleziony
+            BD-->>BE: Brak wyników
+            BE-->>FE: 401 Unauthorized<br/>"Nieprawidłowy email lub hasło"
+            FE-->>U: Ogólny komunikat błędu<br/>(nie ujawnia co jest złe)
+        else Użytkownik znaleziony
+            BD-->>BE: Zwraca rekord użytkownika
+
+            alt Konto tymczasowo zablokowane (rate limiting)
+                BE-->>FE: 429 Too Many Requests<br/>"Zbyt wiele prób. Spróbuj za X minut"
+                FE-->>U: Informacja o tymczasowej blokadzie
+            else Konto dostępne
+                BE->>BE: Weryfikacja hasła vs hash Argon2id
+
+                alt Hasło nieprawidłowe
+                    BE->>BD: UPDATE uzytkownicy<br/>SET liczba_prob = liczba_prob + 1<br/>WHERE id = ?
+
+                    alt Przekroczono limit prób (np. 5)
+                        BE->>BD: UPDATE uzytkownicy<br/>SET blokada_do = NOW() + INTERVAL '15 min'<br/>WHERE id = ?
+                        BD-->>BE: OK
+                    end
+
+                    BD-->>BE: OK
+                    BE-->>FE: 401 Unauthorized<br/>"Nieprawidłowy email lub hasło"
+                    FE-->>U: Ogólny komunikat błędu
+                else Hasło prawidłowe
+                    BE->>BD: UPDATE uzytkownicy<br/>SET liczba_prob = 0,<br/>ostatnie_logowanie = NOW()<br/>WHERE id = ?
+                    BD-->>BE: OK
+
+                    BE->>BE: Tworzenie sesji<br/>(generowanie tokena sesji)
+
+                    BE->>BD: INSERT INTO sesje<br/>(uzytkownik_id, token, wygasa)
+                    BD-->>BE: Potwierdzenie sesji
+
+                    BE-->>FE: 200 OK<br/>Set-Cookie: session=token<br/>(HttpOnly, Secure, SameSite=Strict)
+                    FE-->>U: Przekierowanie do panelu głównego
+                end
+            end
+        end
+    end
+
+    %% ── WYLOGOWANIE ──────────────────────────────────────────
+    rect rgb(255, 230, 230)
+        Note over U, BD: Wylogowanie
+
+        U->>FE: Kliknięcie "Wyloguj"
+        FE->>BE: POST /api/auth/logout<br/>Cookie: session=token
+
+        BE->>BD: DELETE FROM sesje<br/>WHERE token = ?
+        BD-->>BE: OK
+
+        BE-->>FE: 200 OK<br/>Set-Cookie: session=; Max-Age=0
+        FE-->>U: Przekierowanie do strony logowania
+    end

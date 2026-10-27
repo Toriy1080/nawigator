@@ -1,0 +1,57 @@
+%% State Diagram: Status przypisania pomocnika
+%% Nawigator procedur administracyjnych
+
+stateDiagram-v2
+    direction TB
+
+    [*] --> zaproszony : Klient wysyła zaproszenie\n(podaje email pomocnika)
+
+    zaproszony : 📨 Zaproszony
+    zaproszony : ─────────────────────
+    zaproszony : Zaproszenie wysłane.
+    zaproszony : Oczekiwanie na akceptację
+    zaproszony : przez pomocnika.
+    zaproszony : invited_at = NOW()
+    zaproszony : token zaproszenia aktywny
+
+    aktywny : ✅ Aktywny
+    aktywny : ─────────────────────
+    aktywny : Pomocnik zaakceptował.
+    aktywny : Ma dostęp do planu klienta.
+    aktywny : Może oznaczać kroki jako
+    aktywny : wykonane w imieniu klienta.
+    aktywny : accepted_at = NOW()
+
+    cofniety : ❌ Cofnięty
+    cofniety : ─────────────────────
+    cofniety : Dostęp pomocnika został
+    cofniety : cofnięty lub zaproszenie
+    cofniety : anulowane.
+    cofniety : revoked_at = NOW()
+
+    zaproszony --> aktywny : Pomocnik akceptuje zaproszenie\n(klik na link w emailu\nlub akceptacja w aplikacji)
+    zaproszony --> cofniety : Klient anuluje zaproszenie\nprzed akceptacją
+    aktywny --> cofniety : Klient cofa dostęp\npomocnikowi
+
+    cofniety --> [*] : Stan końcowy\n(rekord archiwizowany)
+
+    note right of zaproszony
+        Zaproszenie wygasa po X dniach.
+        Jeśli nie zaakceptowane:
+        status → cofniety (auto-expire)
+    end note
+
+    note right of aktywny
+        Uprawnienia pomocnika:
+        • Podgląd planu klienta
+        • Oznaczanie kroków (w imieniu klienta)
+        • NIE może edytować profilu klienta
+        • NIE może zapraszać innych pomocników
+    end note
+
+    note left of cofniety
+        Po cofnięciu:
+        • Pomocnik traci dostęp natychmiast
+        • Klient może ponownie zaprosić
+          (nowy rekord zaproszenia)
+    end note

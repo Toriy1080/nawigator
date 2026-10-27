@@ -1,0 +1,39 @@
+flowchart TD
+    classDef startEnd fill:#1e293b,stroke:#0f172a,stroke-width:2px,color:#fff;
+    classDef mainStep fill:#2563eb,stroke:#1d4ed8,stroke-width:2px,color:#fff;
+    classDef parallelTrack fill:#0891b2,stroke:#0e7490,stroke-width:2px,color:#fff;
+    classDef decision fill:#d97706,stroke:#b45309,stroke-width:2px,color:#fff;
+    classDef specialLaw fill:#7c3aed,stroke:#6d28d9,stroke-width:2px,color:#fff;
+
+    Start([Przyjazd do Polski / Przekroczenie granicy]):::startEnd --> CheckSpec[Status ochrony czasowej - Ustawa Specjalna]:::specialLaw
+
+    subgraph Faza1 ["Faza 1: Identyfikacja i rejestracja (Tryb Specjalny)"]
+        CheckSpec --> PESEL_UKR["Nadanie numeru PESEL ze statusem UKR<br/>(Urząd Gminy / Dzielnicy)<br/>- zdjęcie, odciski palców, profil zaufany"]:::specialLaw
+        PESEL_UKR --> Zameldowanie["Zameldowanie (często automatyczne przy PESEL UKR)<br/>lub rejestracja miejsca pobytu"]:::mainStep
+    end
+
+    Zameldowanie --> Fork{Równoległe ścieżki integracji}:::decision
+
+    subgraph Faza2_Rodzina ["Ścieżka Rodzinna (jeśli dotyczy)"]
+        Fork --> CheckChildren{"Czy posiada dzieci?"}:::decision
+        CheckChildren -- Tak --> Szkola["Zapis dziecka do szkoły / przedszkola<br/>(Wydział Oświaty / Dyrekcja szkoły)"]:::parallelTrack
+        CheckChildren -- Tak --> Swiadczenia["Złożenie wniosków o świadczenia<br/>(np. 800+, Dobry Start - przez ZUS PUE)"]:::parallelTrack
+        CheckChildren -- Nie --> PominDzieci[Pominięcie kroków szkolnych]:::parallelTrack
+    end
+
+    subgraph Faza2_Zdrowie ["Ścieżka Zdrowotna"]
+        Fork --> NFZ["Dostęp do publicznej opieki zdrowotnej (NFZ)<br/>- na mocy ustawy specjalnej<br/>- wybór lekarza POZ (Deklaracja POZ)"]:::parallelTrack
+    end
+
+    subgraph Faza2_Praca ["Ścieżka Zawodowa"]
+        Fork --> Praca["Podjęcie legalnej pracy<br/>(Powiadomienie PUP przez pracodawcę w 14 dni)<br/>Brak konieczności zezwolenia na pracę!"]:::specialLaw
+        Praca --> ZUS["Zgłoszenie do ubezpieczeń ZUS przez pracodawcę"]:::parallelTrack
+    end
+
+    Szkola --> Join([Plan podstawowy UKR zrealizowany]):::startEnd
+    Swiadczenia --> Join
+    PominDzieci --> Join
+    NFZ --> Join
+    ZUS --> Join
+
+    class Faza1,Faza2_Rodzina,Faza2_Zdrowie,Faza2_Praca fill:#f8fafc,stroke:#cbd5e1,stroke-width:1px;

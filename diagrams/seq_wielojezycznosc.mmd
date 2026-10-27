@@ -1,0 +1,109 @@
+sequenceDiagram
+    title Obsługa wielojęzyczności treści
+
+    actor U as Użytkownik
+    participant FE as Frontend
+    participant BE as Backend
+    participant BD as Baza Danych
+
+    %% ── ŻĄDANIE STRONY W WYBRANYM JĘZYKU ────────────────────
+    rect rgb(220, 240, 255)
+        Note over U, BD: Użytkownik żąda treści w wybranym języku
+
+        U->>FE: Otwiera stronę<br/>(preferowany język: UA)
+        FE->>BE: GET /api/procedury/{id}<br/>Accept-Language: uk<br/>Cookie: lang=uk
+    end
+
+    %% ── WYSZUKIWANIE TŁUMACZENIA ─────────────────────────────
+    rect rgb(230, 255, 230)
+        Note over BE, BD: Wyszukiwanie tłumaczenia z kaskadowym fallback
+
+        BE->>BD: SELECT p.id, p.nazwa AS nazwa_pl,<br/>p.opis AS opis_pl<br/>FROM procedury p<br/>WHERE p.id = ?
+        BD-->>BE: Dane bazowe procedury (PL)
+
+        BE->>BD: SELECT kolumna, wartosc<br/>FROM tlumaczenia<br/>WHERE tabela = 'procedury'<br/>AND rekord_id = ?<br/>AND jezyk = 'UK'
+        BD-->>BE: Wynik wyszukiwania tłumaczenia
+
+        alt Tłumaczenie znalezione (UK)
+            Note right of BE: Użyj tłumaczenia<br/>ukraińskiego ✓
+            BE->>BE: Zastąp pola:<br/>nazwa → wartosc(nazwa, UK)<br/>opis → wartosc(opis, UK)
+        else Tłumaczenie nie znalezione → fallback PL
+            BE->>BD: SELECT kolumna, wartosc<br/>FROM tlumaczenia<br/>WHERE tabela = 'procedury'<br/>AND rekord_id = ?<br/>AND jezyk = 'PL'
+            BD-->>BE: Wynik wyszukiwania (PL)
+
+            alt Tłumaczenie PL znalezione
+                Note right of BE: Fallback do polskiego ✓
+                BE->>BE: Użyj tłumaczenia PL<br/>(lub danych bazowych, bo PL = domyślny)
+            else Brak PL → fallback EN
+                BE->>BD: SELECT kolumna, wartosc<br/>FROM tlumaczenia<br/>WHERE tabela = 'procedury'<br/>AND rekord_id = ?<br/>AND jezyk = 'EN'
+                BD-->>BE: Wynik wyszukiwania (EN)
+
+                alt Tłumaczenie EN znalezione
+                    Note right of BE: Fallback do angielskiego ✓
+                    BE->>BE: Użyj tłumaczenia EN
+                else Brak jakiegokolwiek tłumaczenia
+                    Note right of BE: Użyj oryginalnych<br/>danych z tabeli (PL)
+                    BE->>BE: Zwróć dane bazowe<br/>bez tłumaczenia
+                end
+            end
+        end
+
+        Note over BE: Optymalizacja: jedno zapytanie z COALESCE<br/>SELECT COALESCE(<br/>  t_uk.wartosc, t_pl.wartosc,<br/>  t_en.wartosc, p.nazwa<br/>) AS nazwa<br/>FROM procedury p<br/>LEFT JOIN tlumaczenia t_uk ON ...<br/>  AND t_uk.jezyk = 'UK'<br/>LEFT JOIN tlumaczenia t_pl ON ...<br/>  AND t_pl.jezyk = 'PL'<br/>LEFT JOIN tlumaczenia t_en ON ...<br/>  AND t_en.jezyk = 'EN'
+
+        BE-->>FE: 200 OK<br/>{id, nazwa, opis,<br/>jezyk_uzywany: 'UK',<br/>jezyk_fallback: false}
+        FE-->>U: Wyświetlenie treści<br/>w języku ukraińskim
+    end
+
+    %% ── WYSZUKIWANIE W SŁOWNIKU POJĘĆ ────────────────────────
+    rect rgb(255, 245, 220)
+        Note over U, BD: Użytkownik wyszukuje termin w słowniku
+
+        U->>FE: Kliknięcie na termin<br/>(np. "karta pobytu")
+        FE->>BE: GET /api/slownik/{termin_id}<br/>Accept-Language: uk
+
+        BE->>BD: SELECT s.id, s.termin_pl,<br/>s.wyjasnienie_pl<br/>FROM slownik s<br/>WHERE s.id = ?
+        BD-->>BE: Termin bazowy (PL)
+
+        BE->>BD: SELECT kolumna, wartosc<br/>FROM tlumaczenia<br/>WHERE tabela = 'slownik'<br/>AND rekord_id = ?<br/>AND jezyk = 'UK'
+        BD-->>BE: Tłumaczenie terminu
+
+        alt Tłumaczenie słownikowe znalezione
+            BE->>BE: Przygotuj odpowiedź:<br/>termin_pl + termin_uk<br/>wyjasnienie_pl + wyjasnienie_uk
+        else Brak tłumaczenia
+            BE->>BE: Zwróć termin i wyjaśnienie<br/>tylko w języku polskim
+        end
+
+        BE-->>FE: 200 OK<br/>{termin_pl: "karta pobytu",<br/>termin_uk: "карта побиту",<br/>wyjasnienie_pl: "Dokument...",<br/>wyjasnienie_uk: "Документ..."}
+
+        FE->>FE: Wyświetl tooltip/modal<br/>z tłumaczeniem i wyjaśnieniem
+
+        FE-->>U: Popup ze słownikiem:<br/>🇵🇱 karta pobytu<br/>🇺🇦 карта побиту<br/>"Dokument uprawniający..."
+    end
+
+    %% ── ZMIANA JĘZYKA INTERFEJSU ─────────────────────────────
+    rect rgb(245, 235, 255)
+        Note over U, BD: Użytkownik zmienia język interfejsu
+
+        U->>FE: Kliknięcie selektora języka<br/>(np. UK → EN)
+
+        FE->>FE: Aktualizacja Cookie: lang=en<br/>Aktualizacja nagłówka Accept-Language
+
+        FE->>BE: GET /api/procedury<br/>Accept-Language: en<br/>Cookie: lang=en
+
+        BE->>BD: SELECT p.id, p.nazwa,<br/>COALESCE(t.wartosc, p.nazwa) AS nazwa_przetlumaczona<br/>FROM procedury p<br/>LEFT JOIN tlumaczenia t<br/>ON t.tabela = 'procedury'<br/>AND t.kolumna = 'nazwa'<br/>AND t.rekord_id = p.id<br/>AND t.jezyk = 'EN'<br/>ORDER BY p.id
+        BD-->>BE: Lista procedur z tłumaczeniami EN
+
+        BE-->>FE: 200 OK<br/>{procedury: [{id, nazwa_en, opis_en, ...}],<br/>jezyk: 'EN'}
+
+        FE->>FE: Przeładowanie wszystkich treści:<br/>• Nazwy procedur<br/>• Opisy kroków<br/>• Elementy interfejsu (i18n)<br/>• Etykiety przycisków<br/>• Komunikaty systemowe
+
+        FE-->>U: Cały interfejs w nowym języku 🇬🇧
+
+        opt Zalogowany użytkownik
+            FE->>BE: PUT /api/profil/jezyk<br/>{jezyk: 'EN'}
+            BE->>BD: UPDATE profile SET<br/>preferowany_jezyk = 'EN'<br/>WHERE uzytkownik_id = ?
+            BD-->>BE: OK
+            BE-->>FE: 200 OK
+            Note right of FE: Przy następnym logowaniu<br/>język zostanie zapamiętany
+        end
+    end

@@ -1,0 +1,54 @@
+%% State Diagram: Status weryfikacji procedury
+%% Nawigator procedur administracyjnych
+
+stateDiagram-v2
+    direction TB
+
+    [*] --> aktualne : Procedura utworzona i zweryfikowana
+
+    aktualne : Aktualne
+    aktualne : ─────────────────────
+    aktualne : Procedura jest aktualna
+    aktualne : i dostępna dla użytkowników.
+    aktualne : verification_date = NOW()
+
+    do_sprawdzenia : Do sprawdzenia
+    do_sprawdzenia : ─────────────────────
+    do_sprawdzenia : Wymaga przeglądu przez admina.
+    do_sprawdzenia : Nadal widoczna dla użytkowników,
+    do_sprawdzenia : ale oznaczona jako wymagająca weryfikacji.
+
+    przestarzale : Przestarzałe
+    przestarzale : ─────────────────────
+    przestarzale : Procedura nieaktualna.
+    przestarzale : Ukryta lub oznaczona
+    przestarzale : jako archiwalna.
+
+    aktualne --> do_sprawdzenia : verification_date + review_interval < TODAY\n(automatyczny trigger czasowy)
+    do_sprawdzenia --> aktualne : Admin klika "Zweryfikowano"\n(verification_date = NOW())
+    do_sprawdzenia --> przestarzale : Admin oznacza jako przestarzałe
+    przestarzale --> aktualne : Admin aktualizuje treść\ni weryfikuje procedurę
+
+    state edycja_fork <<fork>>
+    state edycja_join <<join>>
+
+    note right of aktualne
+        Każda edycja procedury w dowolnym stanie
+        jest rejestrowana w dzienniku zmian:
+        • kto edytował (admin_id)
+        • kiedy (timestamp)
+        • co zmieniono (diff / opis)
+    end note
+
+    note left of do_sprawdzenia
+        Trigger automatyczny:
+        Cron job lub zapytanie SQL sprawdza
+        czy verification_date + review_interval_days
+        < CURRENT_DATE
+    end note
+
+    note right of przestarzale
+        Procedura przestarzała może być
+        przywrócona po aktualizacji treści,
+        kroków i dokumentów.
+    end note

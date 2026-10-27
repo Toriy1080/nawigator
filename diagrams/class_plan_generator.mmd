@@ -1,0 +1,88 @@
+%% Nawigator procedur administracyjnych — Diagram klas: Generator planu
+classDiagram
+    direction TB
+
+    class PlanGenerator {
+        +generatePlan(userId: int, situationId: int) Plan
+        +recalculatePlan(userId: int) Plan
+        -applyRules(procedures: Procedure[], profile: UserProfile) Procedure[]
+        -buildDependencyGraph(procedures: Procedure[]) DependencyGraph
+    }
+
+    class DependencyGraph {
+        -nodes: Map~ProcedureId, Node~
+        -edges: List~Edge~
+        +addNode(procedureId: ProcedureId) void
+        +addEdge(from: ProcedureId, to: ProcedureId, type: DependencyType) void
+        +detectCycles() boolean
+        +topologicalSort() ProcedureId[]
+        +getParallelGroups() ProcedureId[][]
+    }
+
+    class RuleEngine {
+        -rules: Map~ProcedureId, Rule[]~
+        +evaluate(procedure: Procedure, profile: UserProfile) boolean
+        +getRulesForProcedure(procedureId: ProcedureId) Rule[]
+    }
+
+    class Rule {
+        +procedureId: ProcedureId
+        +citizenshipGroupId: int
+        +residenceBasisId: int
+        +residencePurposeId: int
+        +isAvailable: boolean
+        +matches(profile: UserProfile) boolean
+    }
+
+    class UserProfile {
+        +userId: int
+        +countryId: int
+        +citizenshipGroup: CitizenshipGroup
+        +residenceBasis: ResidenceBasis
+        +residencePurpose: ResidencePurpose
+        +employmentType: EmploymentType
+    }
+
+    class Plan {
+        +userId: int
+        +situationId: int
+        +steps: PlanStep[]
+        +completionPercentage() number
+    }
+
+    class PlanStep {
+        +procedureId: ProcedureId
+        +stepNumber: int
+        +status: StepStatus
+        +isBlocked: boolean
+        +dependencies: ProcedureId[]
+        +requiredDocuments: Document[]
+    }
+
+    class StepStatus {
+        <<enumeration>>
+        NIEROZPOCZETY
+        W_TRAKCIE
+        WYKONANY
+    }
+
+    class Document {
+        +documentId: int
+        +name: string
+        +isRequired: boolean
+    }
+
+    %% Relationships
+    PlanGenerator --> DependencyGraph : buduje
+    PlanGenerator --> RuleEngine : używa
+    PlanGenerator --> UserProfile : odczytuje
+    PlanGenerator --> Plan : tworzy
+
+    RuleEngine --> Rule : przechowuje *
+    Rule --> UserProfile : dopasowuje
+
+    Plan --> PlanStep : zawiera *
+    PlanStep --> StepStatus : ma
+    PlanStep --> Document : wymaga *
+
+    DependencyGraph ..> PlanStep : definiuje kolejność

@@ -1,0 +1,68 @@
+%% Nawigator procedur administracyjnych — Harmonogram projektu (12 tygodni)
+flowchart LR
+
+    subgraph TYDZIEN["Oś czasu — tygodnie"]
+        W1["Tydz 1"] --> W2["Tydz 2"]
+        W2 --> W3["Tydz 3"]
+        W3 --> W4["Tydz 4"]
+        W4 --> W5["Tydz 5"]
+        W5 --> W6["Tydz 6"]
+        W6 --> W7["Tydz 7"]
+        W7 --> W8["Tydz 8"]
+        W8 --> W9["Tydz 9"]
+        W9 --> W10["Tydz 10"]
+        W10 --> W11["Tydz 11"]
+        W11 --> W12["Tydz 12"]
+    end
+
+    subgraph ETAPY["Fazy projektu"]
+        E1["📋 Analiza i projekt\nTydz 1–2 | 15h"]
+        E2["🗄️ Baza danych\nTydz 2–4 | 12h"]
+        E3["📚 Zbieranie danych\nTydz 1–6 | 25h"]
+        E4["⚙️ Backend\nTydz 3–7 | 30h"]
+        E5["🖥️ Frontend\nTydz 5–9 | 25h"]
+        E6["🔧 Panel administratora\nTydz 7–10 | 15h"]
+        E7["🧪 Testy\nTydz 9–11 | 10h"]
+        E8["📝 Dokumentacja\nTydz 10–12 | 10h"]
+    end
+
+    subgraph KAMIENIE["Kamienie milowe"]
+        M1{{"✅ ERD zatwierdzony\n(Tydz 2)"}}
+        M2{{"✅ Vertical slice\n(Tydz 6)"}}
+        M3{{"✅ Wszystkie scenariusze\n(Tydz 9)"}}
+        M4{{"🏁 Wersja finalna\n(Tydz 12)"}}
+    end
+
+    %% Fazy → tygodnie (powiązania czasowe)
+    W1 -.-> E1
+    W2 -.-> E2
+    W1 -.-> E3
+    W3 -.-> E4
+    W5 -.-> E5
+    W7 -.-> E6
+    W9 -.-> E7
+    W10 -.-> E8
+
+    %% Zależności między fazami
+    E1 --> E2
+    E2 --> E4
+    E4 --> E5
+    E4 --> E6
+    E5 --> E7
+    E6 --> E7
+    E7 --> E8
+
+    %% Kamienie milowe
+    E1 --> M1
+    E3 --> M2
+    E5 --> M3
+    E8 --> M4
+
+    %% Styling
+    classDef phase fill:#4a90d9,stroke:#2c5f8a,color:#fff
+    classDef milestone fill:#e6a32e,stroke:#b07d1a,color:#fff,font-weight:bold
+    classDef week fill:#f0f0f0,stroke:#ccc,color:#333
+
+    class E1,E2,E3,E4,E5,E6,E7,E8 phase
+    class M1,M2,M3,M4 milestone
+    class W1,W2,W3,W4,W5,W6,W7,W8,W9,W10,W11,W12 week

@@ -1,0 +1,100 @@
+sequenceDiagram
+    title Zmiana profilu i przeliczenie planu
+
+    actor K as Klient
+    participant FE as Frontend
+    participant BE as Backend
+    participant BD as Baza Danych
+
+    %% ── ZMIANA PROFILU ───────────────────────────────────────
+    rect rgb(220, 240, 255)
+        Note over K, BD: Klient zmienia dane profilu
+
+        K->>FE: Zmienia dane profilu<br/>(np. narodowość, cel pobytu,<br/>podstawa pobytu)
+        FE->>FE: Walidacja formularza
+        FE->>BE: PUT /api/profil<br/>{narodowosc, cel_pobytu, podstawa_pobytu}
+    end
+
+    %% ── ZAPIS NOWEGO PROFILU ─────────────────────────────────
+    rect rgb(230, 255, 230)
+        Note over BE, BD: Zapis zmian w profilu
+
+        BE->>BD: SELECT narodowosc, cel_pobytu,<br/>podstawa_pobytu FROM profile<br/>WHERE uzytkownik_id = ?
+        BD-->>BE: Stare wartości profilu
+
+        BE->>BD: UPDATE profile SET<br/>narodowosc = ?, cel_pobytu = ?,<br/>podstawa_pobytu = ?,<br/>data_aktualizacji = NOW()<br/>WHERE uzytkownik_id = ?
+        BD-->>BE: Profil zaktualizowany
+
+        BE->>BD: INSERT INTO dziennik_zmian<br/>(tabela, rekord_id, pole,<br/>stara_wartosc, nowa_wartosc,<br/>uzytkownik_id, data_zmiany)
+        BD-->>BE: Zmiana zalogowana
+    end
+
+    %% ── ZACHOWANIE UKOŃCZONYCH KROKÓW ────────────────────────
+    rect rgb(255, 245, 220)
+        Note over BE, BD: Zachowanie kroków już ukończonych
+
+        BE->>BD: SELECT kp.id, kp.procedura_id,<br/>kp.status, kp.data_ukonczenia<br/>FROM kroki_planu kp<br/>WHERE kp.uzytkownik_id = ?<br/>AND kp.plan_id = ?
+        BD-->>BE: Wszystkie kroki aktualnego planu
+
+        BE->>BE: Zapisz w pamięci kroki<br/>ze statusem 'ukonczone'<br/>wraz z datami ukończenia
+
+        Note right of BE: Ukończone kroki nigdy<br/>nie są usuwane ani resetowane
+    end
+
+    %% ── REGENERACJA PLANU Z NOWYMI REGUŁAMI ──────────────────
+    rect rgb(245, 235, 255)
+        Note over BE, BD: Regeneracja planu z nowymi regułami dostępności
+
+        BE->>BD: SELECT p.* FROM procedury p<br/>JOIN sytuacje_procedury sp<br/>ON p.id = sp.procedura_id<br/>WHERE sp.sytuacja_id = ?
+        BD-->>BE: Lista procedur dla sytuacji
+
+        BE->>BD: SELECT * FROM reguly_dostepnosci<br/>WHERE procedura_id IN (...)
+        BD-->>BE: Reguły dostępności
+
+        BE->>BE: Zastosuj NOWE reguły dostępności:<br/>• Nowa narodowość → inne procedury<br/>• Nowy cel pobytu → inne wymagania<br/>• Nowa podstawa → inne ścieżki
+
+        Note right of BE: Generuj nowy zestaw<br/>wymaganych procedur
+
+        BE->>BD: Rekurencyjne zapytanie CTE<br/>po grafie zależności<br/>dla nowego zestawu procedur
+        BD-->>BE: Nowe drzewo zależności
+
+        BE->>BE: Sortowanie topologiczne<br/>nowego zestawu procedur
+    end
+
+    %% ── SCALANIE: STARY POSTĘP + NOWY PLAN ──────────────────
+    rect rgb(255, 230, 230)
+        Note over BE, BD: Scalanie starego postępu z nowym planem
+
+        BE->>BE: Porównaj stare kroki z nowymi:<br/><br/>1. ZACHOWAJ ukończone kroki<br/>   (jeśli procedura nadal w planie)<br/><br/>2. DODAJ nowe wymagane kroki<br/>   (procedury z nowych reguł)<br/><br/>3. USUŃ nieaktualne kroki<br/>   (procedury nie wymagane<br/>   przy nowym profilu,<br/>   TYLKO jeśli nieukończone)
+
+        BE->>BE: Przelicz statusy kroków:<br/>• Dostępny: wszystkie zależności<br/>  ukończone<br/>• Zablokowany: brak wymaganych<br/>  zależności<br/>• Pominięty: dokumenty już dostarczone
+
+        loop Dla każdego kroku w scalonym planie
+            alt Krok istniał i ukończony
+                BE->>BD: UPDATE kroki_planu<br/>SET kolejnosc = ?<br/>WHERE id = ?
+                Note right of BD: Zachowaj status 'ukonczone'<br/>Aktualizuj tylko kolejność
+            else Krok nowy
+                BE->>BD: INSERT INTO kroki_planu<br/>(uzytkownik_id, procedura_id,<br/>kolejnosc, status, plan_id)
+            else Krok nieaktualny i nieukończony
+                BE->>BD: DELETE FROM kroki_planu<br/>WHERE id = ? AND status != 'ukonczone'
+            end
+            BD-->>BE: OK
+        end
+
+        BE->>BD: UPDATE plany SET<br/>wersja = wersja + 1,<br/>data_przeliczenia = NOW()<br/>WHERE id = ?
+        BD-->>BE: Plan zaktualizowany
+
+        BE->>BD: INSERT INTO dziennik_zmian<br/>(tabela, rekord_id, pole,<br/>stara_wartosc, nowa_wartosc,<br/>opis: 'Przeliczenie planu po zmianie profilu')
+        BD-->>BE: Zmiana zalogowana
+    end
+
+    %% ── ODPOWIEDŹ DO KLIENTA ─────────────────────────────────
+    rect rgb(240, 255, 240)
+        Note over K, FE: Aktualizacja widoku planu
+
+        BE-->>FE: 200 OK<br/>{plan_id, wersja, kroki: [...],<br/>zmiany: {<br/>  zachowane: [...],<br/>  dodane: [...],<br/>  usuniete: [...]<br/>}}
+
+        FE->>FE: Aktualizacja widoku planu:<br/>• Podświetl nowe kroki (zielone)<br/>• Oznacz usunięte (przekreślone)<br/>• Zachowaj zielone ✓ przy ukończonych<br/>• Zaktualizuj pasek postępu
+
+        FE-->>K: Wyświetlenie zaktualizowanego planu<br/>z podsumowaniem zmian
+    end

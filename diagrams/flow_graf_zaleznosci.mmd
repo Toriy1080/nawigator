@@ -1,0 +1,44 @@
+flowchart TD
+    %% Stylizacja stanów kroków
+    classDef done fill:#22c55e,stroke:#15803d,stroke-width:3px,color:#ffffff;
+    classDef inProgress fill:#eab308,stroke:#a16207,stroke-width:3px,color:#000000;
+    classDef available fill:#3b82f6,stroke:#1d4ed8,stroke-width:3px,color:#ffffff;
+    classDef blocked fill:#94a3b8,stroke:#64748b,stroke-width:2px,stroke-dasharray: 5 5,color:#334155;
+    classDef legend fill:#ffffff,stroke:#cbd5e1,stroke-width:1px;
+
+    %% Węzły grafu procedur (Przykład: Pracownik spoza UE)
+    P1["1. Oświadczenie / Zezwolenie na pracę<br/><i>(Uzyskiwane przez pracodawcę w Polsce)</i>"]:::done
+    P2["2. Złożenie wniosku o wizę krajową D<br/><i>(Konsulat RP w kraju pochodzenia)</i>"]:::done
+    P3["3. Przyjazd do Polski i przekroczenie granicy<br/><i>(Odprawa graniczna SG)</i>"]:::done
+    
+    P4["4. Zameldowanie na pobyt czasowy<br/><i>(Urząd Dzielnicy / Gminy - w 4 dni)</i>"]:::inProgress
+    P5["5. Nadanie numeru PESEL<br/><i>(Urząd Dzielnicy - równolegle z meldunkiem)</i>"]:::available
+
+    P6["6. Wniosek o zezwolenie na pobyt czasowy i pracę<br/><b>Karta Pobytu</b> (Urząd Wojewódzki)"]:::blocked
+    P7["7. Zgłoszenie pracownika do ZUS (ZUA)<br/><i>(Pracodawca - w ciągu 7 dni)</i>"]:::available
+    P8["8. Dostęp do świadczeń NFZ i wybór POZ<br/><i>(Po potwierdzeniu w eWUŚ / ZUS)</i>"]:::blocked
+
+    %% Relacje zależności (Krawędzie grafu skierowanego DAG)
+    P1 -->|Wymóg do wizy| P2
+    P2 -->|Podstawa wjazdu| P3
+    
+    P3 -->|Wymóg obecności| P4
+    P3 -->|Wymóg obecności| P5
+    P3 -->|Po podjęciu pracy| P7
+
+    %% Warunek AND: Karta pobytu wymaga meldunku i PESEL
+    P4 -.->|Warunek AND| P6
+    P5 -.->|Warunek AND| P6
+
+    %% ZUS jest podstawą do NFZ
+    P7 -->|Składka zdrowotna| P8
+
+    %% Legenda stanów w subgrafie
+    subgraph Legenda ["Legenda statusów w Planie Użytkownika"]
+        L_Done["WYKONANY (Krok zakończony)"]:::done
+        L_InProg["W TRAKCIE (Rozpoczęty)"]:::inProgress
+        L_Avail["DOSTĘPNY (Wszystkie wymogi spełnione)"]:::available
+        L_Block["ZABLOKOWANY (Czeka na poprzedniki)"]:::blocked
+    end
+
+    class Legenda fill:#f8fafc,stroke:#cbd5e1;

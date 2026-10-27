@@ -1,0 +1,73 @@
+%% Nawigator procedur administracyjnych — Przepływ bezpieczeństwa
+flowchart TD
+
+    START(["Żądanie użytkownika"]) --> INPUT
+
+    subgraph INPUT["1. Walidacja wejścia"]
+        VAL["Walidacja danych wejściowych\n• sprawdzenie typów\n• ograniczenia długości\n• dozwolone znaki"]
+        SAN["Sanityzacja\n• usunięcie tagów HTML\n• escape znaków specjalnych\n• normalizacja Unicode"]
+        VAL --> SAN
+    end
+
+    SAN --> AUTH_CHECK
+
+    subgraph AUTH_CHECK["2. Uwierzytelnianie"]
+        ARGON["Haszowanie haseł\n— Argon2id —\n• pamięciożerne\n• odporne na GPU"]
+        RATE["Rate limiting\n• max. prób logowania\n• blokada po przekroczeniu"]
+        GENERIC["Generyczne komunikaty błędów\n• brak informacji czy email istnieje\n• jednolity czas odpowiedzi"]
+        ARGON --> RATE
+        RATE --> GENERIC
+    end
+
+    GENERIC --> SESSION
+
+    subgraph SESSION["3. Zarządzanie sesją"]
+        COOKIE["HttpOnly cookies\n• niedostępne z JavaScript\n• ochrona przed XSS"]
+        SECURE["Flaga Secure\n• tylko HTTPS\n• ochrona przed MITM"]
+        SAMESITE["SameSite=Strict\n• ochrona przed CSRF"]
+        COOKIE --> SECURE
+        SECURE --> SAMESITE
+    end
+
+    SAMESITE --> AUTHZ
+
+    subgraph AUTHZ["4. Autoryzacja"]
+        ROLE["Sprawdzenie roli po stronie serwera\n• na KAŻDYM żądaniu\n• user / helper / admin"]
+        OWNER["Sprawdzenie właściciela zasobu\n• użytkownik widzi tylko swoje dane"]
+        ROLE --> OWNER
+    end
+
+    OWNER --> DB_SEC
+
+    subgraph DB_SEC["5. Bezpieczeństwo bazy danych"]
+        PARAM["Zapytania parametryzowane\n• zapobieganie SQL injection\n• prepared statements"]
+        LEAST["Zasada minimalnych uprawnień\n• osobny użytkownik DB\n• ograniczone prawa"]
+        PARAM --> LEAST
+    end
+
+    LEAST --> GDPR
+
+    subgraph GDPR["6. Zgodność z RODO / GDPR"]
+        CONSENT["Zgoda przy rejestracji\n• jawna akceptacja regulaminu\n• informacja o przetwarzaniu"]
+        MINIMAL["Minimalizacja danych\n• tylko niezbędne informacje\n• bez numerów dokumentów\n• bez skanów dokumentów"]
+        DELETE["Prawo do usunięcia konta\n• kaskadowe usunięcie danych\n• potwierdzenie hasłem"]
+        CONSENT --> MINIMAL
+        MINIMAL --> DELETE
+    end
+
+    DELETE --> RESPONSE(["Bezpieczna odpowiedź"])
+
+    %% Styling
+    classDef inputStyle fill:#e6a32e,stroke:#b07d1a,color:#fff
+    classDef authStyle fill:#d94a4a,stroke:#a33030,color:#fff
+    classDef sessionStyle fill:#4a90d9,stroke:#2c5f8a,color:#fff
+    classDef authzStyle fill:#9b59b6,stroke:#7d3c98,color:#fff
+    classDef dbStyle fill:#5ba85b,stroke:#3d7a3d,color:#fff
+    classDef gdprStyle fill:#1abc9c,stroke:#16a085,color:#fff
+
+    class VAL,SAN inputStyle
+    class ARGON,RATE,GENERIC authStyle
+    class COOKIE,SECURE,SAMESITE sessionStyle
+    class ROLE,OWNER authzStyle
+    class PARAM,LEAST dbStyle
+    class CONSENT,MINIMAL,DELETE gdprStyle

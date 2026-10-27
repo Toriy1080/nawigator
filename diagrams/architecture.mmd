@@ -1,0 +1,82 @@
+%% Nawigator procedur administracyjnych — Architektura systemu
+flowchart TD
+
+    subgraph EXTERNAL["Źródła zewnętrzne (tylko linki, brak integracji)"]
+        GOV["gov.pl"]
+        BIZ["biznes.gov.pl"]
+        UDO["udsc.gov.pl"]
+        OTHER["Inne portale rządowe"]
+    end
+
+    subgraph FRONTEND["Warstwa prezentacji (Frontend)"]
+        UI["UI\n(responsive, mobile-first)"]
+        LANG["Przełącznik języka\n(PL / UA / EN)"]
+        SEARCH_UI["Wyszukiwarka"]
+    end
+
+    subgraph BACKEND["Warstwa logiki biznesowej (Backend)"]
+        AUTH["Moduł autoryzacji\n(Auth Module)"]
+        PROFILE["Moduł profilu\n(Profile Module)"]
+        PLANGEN["Generator planu\n(Plan Generator)"]
+        GRAPH_ENGINE["Silnik grafowy\n(Graph Engine)"]
+        ADMIN["Panel administratora\n(Admin Panel)"]
+        TRANS["Silnik tłumaczeń\n(Translation Engine)"]
+        SEARCH_ENGINE["Silnik wyszukiwania\n(Search Engine)"]
+    end
+
+    subgraph SECURITY["Warstwa bezpieczeństwa"]
+        COOKIES["HttpOnly + Secure cookies"]
+        ARGON["Haszowanie haseł — Argon2id"]
+        PARAMQ["Zapytania parametryzowane"]
+        RATE["Rate limiting"]
+    end
+
+    subgraph DATA["Warstwa danych"]
+        DB[("PostgreSQL\n(baza danych)")]
+        SESSION[("Session Store")]
+    end
+
+    %% Frontend → Backend
+    UI --> AUTH
+    UI --> PROFILE
+    UI --> PLANGEN
+    UI --> ADMIN
+    SEARCH_UI --> SEARCH_ENGINE
+    LANG --> TRANS
+
+    %% Plan Generator wewnętrznie korzysta z Graph Engine
+    PLANGEN --> GRAPH_ENGINE
+
+    %% Backend → Data
+    AUTH --> DB
+    AUTH --> SESSION
+    PROFILE --> DB
+    PLANGEN --> DB
+    ADMIN --> DB
+    TRANS --> DB
+    SEARCH_ENGINE --> DB
+
+    %% Security chroni Backend
+    AUTH -.-> COOKIES
+    AUTH -.-> ARGON
+    AUTH -.-> RATE
+    DB -.-> PARAMQ
+
+    %% Frontend linkuje do źródeł zewnętrznych
+    UI -. "linki zewnętrzne" .-> GOV
+    UI -. "linki zewnętrzne" .-> BIZ
+    UI -. "linki zewnętrzne" .-> UDO
+    UI -. "linki zewnętrzne" .-> OTHER
+
+    %% Styling
+    classDef frontend fill:#4a90d9,stroke:#2c5f8a,color:#fff
+    classDef backend fill:#5ba85b,stroke:#3d7a3d,color:#fff
+    classDef data fill:#e6a32e,stroke:#b07d1a,color:#fff
+    classDef security fill:#d94a4a,stroke:#a33030,color:#fff
+    classDef external fill:#999,stroke:#666,color:#fff
+
+    class UI,LANG,SEARCH_UI frontend
+    class AUTH,PROFILE,PLANGEN,GRAPH_ENGINE,ADMIN,TRANS,SEARCH_ENGINE backend
+    class DB,SESSION data
+    class COOKIES,ARGON,PARAMQ,RATE security
+    class GOV,BIZ,UDO,OTHER external
