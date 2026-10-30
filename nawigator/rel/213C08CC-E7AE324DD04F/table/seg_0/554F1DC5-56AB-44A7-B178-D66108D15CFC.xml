@@ -1,0 +1,290 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="554F1DC5-56AB-44A7-B178-D66108D15CFC" name="PROCEDURES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Administrative procedures - nodes of the dependency graph</commentInRDBMS>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="8882476B-45BF-46BF-A6B5-7B9122FC899F">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementGenerateAlways>false</autoIncrementGenerateAlways>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CODE" id="3BCB4E86-67D2-40C3-BE61-7B5454018766">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TITLE" id="C7246F29-E5AE-4E5D-A183-A1932FD303FB">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESCRIPTION" id="81DE428A-181F-48FD-9E9F-F6D3CC88C360">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INSTITUTION_ID" id="BC62AFB1-DD35-4A2A-8838-C7CBB6374D0E">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>9E5346A8-4949-4828-B0A0-190A024A90CC</delegate>
+<associations>
+<colAssociation fkAssociation="8BC92933-17C2-4FF0-A1FD-344534F25D38" referredColumn="9E5346A8-4949-4828-B0A0-190A024A90CC" />
+</associations>
+</Column>
+<Column name="SUBMISSION_MODE" id="49B10D34-A14D-447F-8DC7-B80117340562">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>ONLINE / IN_PERSON / POST / MIXED</commentInRDBMS>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FEE_PLN" id="D9BB4991-AFE0-43C1-AFA5-2BF37D94C640">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEADLINE_DAYS" id="BBD8408C-914B-48F5-B594-93EDB8D8DE80">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Deadline length in days</commentInRDBMS>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEADLINE_ANCHOR" id="DD496884-CAF0-4A3A-8A3C-984F98E5E487">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>ARRIVAL (profile arrival date) / PREVIOUS_STEP (done date of the required step)</commentInRDBMS>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SOURCE_ID" id="BF7670A2-52B1-488B-8E09-1F4904A292AE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Official source the record is based on</commentInRDBMS>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>F737F69A-643D-445F-B287-14E5247535D6</delegate>
+<associations>
+<colAssociation fkAssociation="B9188278-36C2-4800-B4A3-D4DCED60475D" referredColumn="F737F69A-643D-445F-B287-14E5247535D6" />
+</associations>
+</Column>
+<Column name="VERIFIED_AT" id="23A68178-221E-4DF1-9132-39835225DCF5">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Date of the last manual verification</commentInRDBMS>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="VERIFIED_BY" id="092607C2-9097-4DF0-BA1F-0A0ED5ECA89A">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Editor or admin who verified the record</commentInRDBMS>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>7A56C07A-8E2F-48CD-9C17-56AFEDCECBA8</delegate>
+<associations>
+<colAssociation fkAssociation="3BC6C445-82F1-40BA-B344-E25E0D21F581" referredColumn="7A56C07A-8E2F-48CD-9C17-56AFEDCECBA8" />
+</associations>
+</Column>
+<Column name="REVIEW_INTERVAL_DAYS" id="87FF1DF7-914F-4C44-9248-3576CAD0942A">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>How often the record must be re-checked</commentInRDBMS>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>180</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STATUS" id="5AC069C7-2DB1-4A65-B5E4-9AA1E52DD3E0">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>CURRENT / TO_CHECK / OUTDATED</commentInRDBMS>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<defaultValue>'TO_CHECK'</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CE48BEAF-1033-44C9-A9D6-26EB6A3F9838" name="PK_PROCEDURES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8882476B-45BF-46BF-A6B5-7B9122FC899F" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AB61C005-D218-4F5F-AD4F-98CF6C65B10E" name="UK_PRC_CODE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3BCB4E86-67D2-40C3-BE61-7B5454018766" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F3D36B94-0260-47D3-9BC0-6AA2B149EF38" name="IDX_PRC_INSTITUTION">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BC62AFB1-DD35-4A2A-8838-C7CBB6374D0E" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C7BEF843-DBDF-454A-880A-D295B652955E" name="IDX_PRC_SOURCE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BF7670A2-52B1-488B-8E09-1F4904A292AE" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A68D4561-CC0C-4C3C-BF19-EFF2210BE195" name="IDX_PRC_VERIFIED_BY">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="092607C2-9097-4DF0-BA1F-0A0ED5ECA89A" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EFECDB40-BC48-4F37-9F15-0BFF8C7F635F" name="FK_PRC_INSTITUTION">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BC62AFB1-DD35-4A2A-8838-C7CBB6374D0E" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="84925CDB-2B11-4DB0-9740-9B0C522D1AE7" name="FK_PRC_SOURCE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BF7670A2-52B1-488B-8E09-1F4904A292AE" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="309AC376-6A7B-4236-A1BC-BCD4D94BBA9B" name="FK_PRC_VERIFIED_BY">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="092607C2-9097-4DF0-BA1F-0A0ED5ECA89A" />
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="CK_PRC_SUBMISSION_MODE" directorySegmentName="seg_0" id="80142183-734E-4869-ABEE-2E937484FBD6">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<rule>SUBMISSION_MODE IN ('ONLINE', 'IN_PERSON', 'POST', 'MIXED')</rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CK_PRC_DEADLINE_ANCHOR" directorySegmentName="seg_0" id="94B3F855-5913-4885-93D6-E17EDCC447F4">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<rule>DEADLINE_ANCHOR IN ('ARRIVAL', 'PREVIOUS_STEP')</rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CK_PRC_STATUS" directorySegmentName="seg_0" id="5099C1EA-718A-4A75-B6FA-A084EF22D05D">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<rule>STATUS IN ('CURRENT', 'TO_CHECK', 'OUTDATED')</rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

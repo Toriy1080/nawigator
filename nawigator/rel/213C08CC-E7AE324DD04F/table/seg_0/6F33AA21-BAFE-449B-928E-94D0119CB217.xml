@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6F33AA21-BAFE-449B-928E-94D0119CB217" name="ROLES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Roles: CLIENT, HELPER, EDITOR, ADMIN</commentInRDBMS>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="B6072471-D372-441B-80DE-8151B57A5AC8">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementGenerateAlways>false</autoIncrementGenerateAlways>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CODE" id="F42282A5-9312-4350-AC2C-9B44A17F6933">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NAME" id="AE093766-541D-4FE4-8EC7-930E74C999D3">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="84842C48-041C-416A-935E-3E70898CC48D" name="PK_ROLES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B6072471-D372-441B-80DE-8151B57A5AC8" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ADE1A30E-F90D-4734-9151-8BD5C508965E" name="UK_ROL_CODE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F42282A5-9312-4350-AC2C-9B44A17F6933" />
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

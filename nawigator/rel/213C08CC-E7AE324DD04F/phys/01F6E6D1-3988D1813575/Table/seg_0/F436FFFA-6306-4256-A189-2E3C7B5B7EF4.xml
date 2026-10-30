@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="PROCEDURE_STEPS" directorySegmentName="seg_0" id="F436FFFA-6306-4256-A189-2E3C7B5B7EF4">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ID" id="09661CDA-7AD0-478C-9F4C-345743571F11">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<autoIncrementDDL>IDENTITY_CLAUSE</autoIncrementDDL>
+</ColumnProxy>
+<ColumnProxy name="DESCRIPTION" id="124C6829-8BD5-4C44-A31F-E19055A15246">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TITLE" id="1841AF76-90C9-4355-AD24-0B5AF074E56A">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PROCEDURE_ID" id="1854A421-02D8-4462-A4E8-7DF84F57BFAB">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="STEP_NO" id="965E9EE0-DEAF-4CAE-B213-72E15B7DD4D1">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_PST_PROCEDURE" id="43C8AD3A-8078-4AF0-A5EE-EBE86DEC528A">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PK_PROCEDURE_STEPS" id="E1C5A0DF-6019-45B0-ACD8-6FC84B6C3EBE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="UK_PST_PROCEDURE_STEP" id="86FD5680-4521-4EBA-9F99-B7D2C5E9E2B6">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev20c>

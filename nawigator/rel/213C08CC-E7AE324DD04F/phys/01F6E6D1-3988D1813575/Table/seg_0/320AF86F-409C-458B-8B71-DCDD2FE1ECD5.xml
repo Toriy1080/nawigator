@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="INSTITUTION_OFFICES" directorySegmentName="seg_0" id="320AF86F-409C-458B-8B71-DCDD2FE1ECD5">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="INSTITUTION_ID" id="61BAB917-64F8-4093-A7B7-818864F20FC6">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CITY" id="7C9058DA-D0A4-40D8-B7CD-8001343594AB">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="BOOKING_URL" id="829C916F-937E-4A86-8A25-E790292C03F3">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ADDRESS" id="B1AFAB20-35A6-4268-83C2-406BF599E35A">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="OPENING_HOURS" id="BA258D5B-F90D-4A8F-88F3-AAB1EA7EBC92">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PHONE" id="E889275B-FD75-4015-BD2F-CDE612FCBA26">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID" id="FE729E95-0C06-44E2-90DB-046F738573BC">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<autoIncrementDDL>IDENTITY_CLAUSE</autoIncrementDDL>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="IDX_INO_INSTITUTION" id="7AE4A17D-43DE-4EB5-84A4-9D5F8BD22B96">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_INO_INSTITUTION" id="E8C3A3D5-088D-42C3-8D3E-01A5A64BD905">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PK_INSTITUTION_OFFICES" id="47627F2E-C91D-489D-B588-70EA22725DB2">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev20c>

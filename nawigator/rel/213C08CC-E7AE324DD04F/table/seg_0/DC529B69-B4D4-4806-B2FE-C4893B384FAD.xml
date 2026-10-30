@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DC529B69-B4D4-4806-B2FE-C4893B384FAD" name="EMPLOYMENT_TYPES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Form of employment (contract, civil contract, sole trader, none)</commentInRDBMS>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="381D004B-92A7-43D7-9AD9-33E79B7D360E">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementGenerateAlways>false</autoIncrementGenerateAlways>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CODE" id="5D207108-BCB5-46F8-9BAE-AAE2F532B7FF">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NAME" id="C2331239-3C18-49C0-94DB-586B56F6A49F">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DC428A0B-ED55-4474-BF54-8363FD65ECC6" name="PK_EMPLOYMENT_TYPES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="381D004B-92A7-43D7-9AD9-33E79B7D360E" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3990FD47-18BF-48F3-B9DC-A11DF73C2E61" name="UK_EMT_CODE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5D207108-BCB5-46F8-9BAE-AAE2F532B7FF" />
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

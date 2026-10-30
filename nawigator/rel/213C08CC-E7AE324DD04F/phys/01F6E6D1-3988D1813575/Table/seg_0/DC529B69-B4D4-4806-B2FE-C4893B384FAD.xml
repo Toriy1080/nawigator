@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="EMPLOYMENT_TYPES" directorySegmentName="seg_0" id="DC529B69-B4D4-4806-B2FE-C4893B384FAD">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ID" id="381D004B-92A7-43D7-9AD9-33E79B7D360E">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<autoIncrementDDL>IDENTITY_CLAUSE</autoIncrementDDL>
+</ColumnProxy>
+<ColumnProxy name="CODE" id="5D207108-BCB5-46F8-9BAE-AAE2F532B7FF">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="NAME" id="C2331239-3C18-49C0-94DB-586B56F6A49F">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PK_EMPLOYMENT_TYPES" id="DC428A0B-ED55-4474-BF54-8363FD65ECC6">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="UK_EMT_CODE" id="3990FD47-18BF-48F3-B9DC-A11DF73C2E61">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev20c>

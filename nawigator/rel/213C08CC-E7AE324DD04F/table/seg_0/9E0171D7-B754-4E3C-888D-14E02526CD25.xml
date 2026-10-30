@@ -1,0 +1,197 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9E0171D7-B754-4E3C-888D-14E02526CD25" name="HELPER_ACCESS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Client -&gt; helper invitation and consent</commentInRDBMS>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="87C19525-9295-46BC-BDCD-562A3FDF7712">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementGenerateAlways>false</autoIncrementGenerateAlways>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLIENT_ID" id="0593DEF5-9189-4A0B-B2BC-36F2DD4B321E">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>7A56C07A-8E2F-48CD-9C17-56AFEDCECBA8</delegate>
+<associations>
+<colAssociation fkAssociation="385B5259-97B4-4512-AE81-3EDBFB36FF8C" referredColumn="7A56C07A-8E2F-48CD-9C17-56AFEDCECBA8" />
+</associations>
+</Column>
+<Column name="HELPER_ID" id="D429C028-BA96-43B6-AC7C-CB516A3789DD">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Filled when the invitation is accepted</commentInRDBMS>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>7A56C07A-8E2F-48CD-9C17-56AFEDCECBA8</delegate>
+<associations>
+<colAssociation fkAssociation="E1A8AA7B-A316-4BFB-94B2-FE84BD9B7AE0" referredColumn="7A56C07A-8E2F-48CD-9C17-56AFEDCECBA8" />
+</associations>
+</Column>
+<Column name="INVITE_CODE" id="73368846-D074-4A9E-88E7-9F0D04CC5D6E">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>32 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INVITE_EMAIL" id="BD50EF79-5B2E-4E26-8FC0-E33C245B034F">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>254 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STATUS" id="0CDF101D-C1A1-4EF9-9955-A8CF126278BE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>PENDING / ACTIVE / REVOKED</commentInRDBMS>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<defaultValue>'PENDING'</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INVITED_AT" id="6F8CCA62-8CC9-46A8-A628-9699BAAE3AD1">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>SYSTIMESTAMP</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ACCEPTED_AT" id="875ABAC4-2CD6-47C0-ABD1-7AC3615E5DB9">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REVOKED_AT" id="16B4FE8A-C26B-41A1-B13E-EA971704B251">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3D698EBA-9F1B-4189-A100-F39ACFB606C2" name="PK_HELPER_ACCESS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="87C19525-9295-46BC-BDCD-562A3FDF7712" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A5F03E0E-02F9-43B9-BD8F-EEC5A2177807" name="UK_HLA_INVITE_CODE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="73368846-D074-4A9E-88E7-9F0D04CC5D6E" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E86B220A-285F-4DD0-8702-6D661C3A66DA" name="IDX_HLA_CLIENT">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0593DEF5-9189-4A0B-B2BC-36F2DD4B321E" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9FB5D1C8-E676-4557-B5F6-64E8DA09A723" name="IDX_HLA_HELPER">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D429C028-BA96-43B6-AC7C-CB516A3789DD" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CE2E7470-4ACC-4408-8E94-0A85090BDD05" name="FK_HLA_CLIENT">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0593DEF5-9189-4A0B-B2BC-36F2DD4B321E" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B4A98DF9-BBD7-4CD5-8392-1F1E13465505" name="FK_HLA_HELPER">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D429C028-BA96-43B6-AC7C-CB516A3789DD" />
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="CK_HLA_STATUS" directorySegmentName="seg_0" id="6183BB43-2616-4B52-BAB9-524473D86BD3">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<rule>STATUS IN ('PENDING', 'ACTIVE', 'REVOKED')</rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CK_HLA_NOT_SELF" directorySegmentName="seg_0" id="83759B5A-722C-42C3-844A-46419BEC13B7">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<rule>HELPER_ID IS NULL OR HELPER_ID &lt;&gt; CLIENT_ID</rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

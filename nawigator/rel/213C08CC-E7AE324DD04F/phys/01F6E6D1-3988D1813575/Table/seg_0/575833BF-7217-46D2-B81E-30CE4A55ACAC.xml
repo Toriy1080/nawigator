@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="ROLE_PERMISSIONS" directorySegmentName="seg_0" id="575833BF-7217-46D2-B81E-30CE4A55ACAC">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="PERMISSION_ID" id="5DB34470-E293-4568-A18F-59AD3DFCDE41">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ROLE_ID" id="C3567D94-9F5C-4C38-A7A9-667347C3B86E">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="IDX_RPM_PERMISSION" id="D8E2D519-B589-4F0D-9B4E-EE31C3ADF6E4">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_RPM_ROLE" id="369CBDA4-A0D0-4224-A09D-BA823CE73D12">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_RPM_PERMISSION" id="45109E81-A925-45E4-9B9E-268A13D6DC06">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PK_ROLE_PERMISSIONS" id="4C32039E-FF52-40E7-8C09-EDB83479E23A">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev20c>

@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B63A6ABC-17BD-4951-BD5A-3353FC17C819" name="SITUATION_PROCEDURES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Procedures that belong to a life situation</commentInRDBMS>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SITUATION_ID" id="10DCF656-B3D6-4858-98CA-CF3D954C5C90">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>56D0BC88-1C53-4412-BB3D-F22EAD53FDA9</delegate>
+<associations>
+<colAssociation fkAssociation="686B6B83-4BB8-4367-960A-C5C5DDCE4D86" referredColumn="56D0BC88-1C53-4412-BB3D-F22EAD53FDA9" />
+</associations>
+</Column>
+<Column name="PROCEDURE_ID" id="743AE4E2-5D6C-4679-9041-7788165ADA4E">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>8882476B-45BF-46BF-A6B5-7B9122FC899F</delegate>
+<associations>
+<colAssociation fkAssociation="2FE1908A-BDFE-4A26-8893-7E3476BDAECC" referredColumn="8882476B-45BF-46BF-A6B5-7B9122FC899F" />
+</associations>
+</Column>
+<Column name="SORT_ORDER" id="623A79D1-8399-40F4-9AA8-D1355B5E8F58">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Tie-break for steps that may run in parallel</commentInRDBMS>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>0</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="51A822A7-2022-41EA-854F-6E59E847899B" name="PK_SITUATION_PROCEDURES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="10DCF656-B3D6-4858-98CA-CF3D954C5C90" />
+<colUsage columnID="743AE4E2-5D6C-4679-9041-7788165ADA4E" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6A0ABBD0-5824-4736-A937-4CD63DC3D841" name="IDX_SPR_PROCEDURE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="743AE4E2-5D6C-4679-9041-7788165ADA4E" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C05B9CA1-0A12-4B6B-BBB5-A6AB250960E5" name="FK_SPR_SITUATION">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="10DCF656-B3D6-4858-98CA-CF3D954C5C90" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7304C04A-AC41-4F74-9003-93BF4169F51C" name="FK_SPR_PROCEDURE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="743AE4E2-5D6C-4679-9041-7788165ADA4E" />
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

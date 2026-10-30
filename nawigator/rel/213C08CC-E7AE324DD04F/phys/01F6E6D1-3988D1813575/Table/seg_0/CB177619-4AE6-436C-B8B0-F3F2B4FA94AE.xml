@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="DOCUMENT_ISSUERS" directorySegmentName="seg_0" id="CB177619-4AE6-436C-B8B0-F3F2B4FA94AE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="DOCUMENT_ID" id="76C8B23A-5143-4FCC-B912-4007E2E55589">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="NOTE" id="9E65999F-F05E-48A8-9533-B7B89E6B635C">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="INSTITUTION_ID" id="CB6A51AB-92A3-425F-84E9-7492D4D3D09E">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="IDX_DIS_INSTITUTION" id="D2E3B36F-09D8-48CC-91C1-2E8077D0641D">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_DIS_DOCUMENT" id="076C16A3-350A-4DBF-988E-F0EA82B9BA5B">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_DIS_INSTITUTION" id="52E20D28-7E8F-47E6-A06E-8BAD5B522FFD">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PK_DOCUMENT_ISSUERS" id="45F846CE-C0EB-414D-AC67-3C52FA49E542">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:44 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev20c>

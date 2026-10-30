@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="575833BF-7217-46D2-B81E-30CE4A55ACAC" name="ROLE_PERMISSIONS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Which permissions a role has</commentInRDBMS>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ROLE_ID" id="C3567D94-9F5C-4C38-A7A9-667347C3B86E">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>B6072471-D372-441B-80DE-8151B57A5AC8</delegate>
+<associations>
+<colAssociation fkAssociation="7130AB76-000D-4A42-9FD8-F7F27B3281FE" referredColumn="B6072471-D372-441B-80DE-8151B57A5AC8" />
+</associations>
+</Column>
+<Column name="PERMISSION_ID" id="5DB34470-E293-4568-A18F-59AD3DFCDE41">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>2D26D340-8FF2-4F36-9C42-296CE107213D</delegate>
+<associations>
+<colAssociation fkAssociation="E3F30B69-761F-4B11-B4D3-6998F30362E2" referredColumn="2D26D340-8FF2-4F36-9C42-296CE107213D" />
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4C32039E-FF52-40E7-8C09-EDB83479E23A" name="PK_ROLE_PERMISSIONS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C3567D94-9F5C-4C38-A7A9-667347C3B86E" />
+<colUsage columnID="5DB34470-E293-4568-A18F-59AD3DFCDE41" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D8E2D519-B589-4F0D-9B4E-EE31C3ADF6E4" name="IDX_RPM_PERMISSION">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5DB34470-E293-4568-A18F-59AD3DFCDE41" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="369CBDA4-A0D0-4224-A09D-BA823CE73D12" name="FK_RPM_ROLE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C3567D94-9F5C-4C38-A7A9-667347C3B86E" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="45109E81-A925-45E4-9B9E-268A13D6DC06" name="FK_RPM_PERMISSION">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5DB34470-E293-4568-A18F-59AD3DFCDE41" />
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

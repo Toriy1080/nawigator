@@ -1,0 +1,105 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="471B57BD-41E7-40BB-B170-149C99B784F2" name="USER_DOCUMENTS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Documents the client already has (no numbers, no scans)</commentInRDBMS>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="USER_ID" id="DA0FDBBA-7C3E-42F1-AF66-1D9D5B1D2088">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>7A56C07A-8E2F-48CD-9C17-56AFEDCECBA8</delegate>
+<associations>
+<colAssociation fkAssociation="5B416E74-BDDF-4CF6-903D-02B31EE8E72B" referredColumn="7A56C07A-8E2F-48CD-9C17-56AFEDCECBA8" />
+</associations>
+</Column>
+<Column name="DOCUMENT_ID" id="62A6D94A-E58F-48C9-B328-99BE576059F3">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>F8731559-BFF4-48F2-BB59-236F73EA5A87</delegate>
+<associations>
+<colAssociation fkAssociation="33BF1C3B-6304-47DA-9A2C-0BF08CACCB1B" referredColumn="F8731559-BFF4-48F2-BB59-236F73EA5A87" />
+</associations>
+</Column>
+<Column name="VALID_UNTIL" id="DCD1DBDF-5E29-4CD0-8439-BFEDB187F5AE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Only for documents with an expiry date</commentInRDBMS>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MARKED_AT" id="57045405-4999-4DDE-A4B0-B994116ED06A">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>SYSTIMESTAMP</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="56BDE2CC-F725-4351-886F-F1A064210C57" name="PK_USER_DOCUMENTS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DA0FDBBA-7C3E-42F1-AF66-1D9D5B1D2088" />
+<colUsage columnID="62A6D94A-E58F-48C9-B328-99BE576059F3" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DBF7843A-E946-44EE-A322-CABA4881E00D" name="IDX_UDC_DOCUMENT">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="62A6D94A-E58F-48C9-B328-99BE576059F3" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="154E8286-CCD9-443B-9D7B-843D68F92028" name="FK_UDC_USER">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DA0FDBBA-7C3E-42F1-AF66-1D9D5B1D2088" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2907E6A3-0EA9-455E-AA09-E0E6C3DBAD0C" name="FK_UDC_DOCUMENT">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="62A6D94A-E58F-48C9-B328-99BE576059F3" />
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

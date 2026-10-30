@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="46878C44-ED21-47D4-B5DF-7BFB852B8208" name="PROCEDURE_DEPENDENCIES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Edges of the graph: procedure requires another one first</commentInRDBMS>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PROCEDURE_ID" id="0ADD1563-3FE7-4880-8C2E-973819B2112B">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>8882476B-45BF-46BF-A6B5-7B9122FC899F</delegate>
+<associations>
+<colAssociation fkAssociation="2ADC4E6B-9125-41DF-A523-C802EEEDA153" referredColumn="8882476B-45BF-46BF-A6B5-7B9122FC899F" />
+</associations>
+</Column>
+<Column name="REQUIRED_PROCEDURE_ID" id="2EEA5719-BB98-442F-A537-7981C37983B9">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>8882476B-45BF-46BF-A6B5-7B9122FC899F</delegate>
+<associations>
+<colAssociation fkAssociation="736B6AF0-02A7-476C-AD5C-2D8C5A808D71" referredColumn="8882476B-45BF-46BF-A6B5-7B9122FC899F" />
+</associations>
+</Column>
+<Column name="IS_BLOCKING" id="1B82BDC7-547C-4FA6-8FD6-8E4A00ADF40F">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>1 = step is locked until done, 0 = recommended order</commentInRDBMS>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>1</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EB3FF0E5-021D-4716-842E-A7A96BF672E4" name="PK_PROCEDURE_DEPENDENCIES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0ADD1563-3FE7-4880-8C2E-973819B2112B" />
+<colUsage columnID="2EEA5719-BB98-442F-A537-7981C37983B9" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D4A0A5BE-427C-4F96-9BB1-AC4A0DD102F6" name="IDX_PDP_REQUIRED_PROCEDURE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2EEA5719-BB98-442F-A537-7981C37983B9" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CDEE98A6-AFC7-40AC-BBE6-78A562C454C0" name="FK_PDP_PROCEDURE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0ADD1563-3FE7-4880-8C2E-973819B2112B" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7E2D2136-84CC-4B40-B2D5-04A562270CB8" name="FK_PDP_REQUIRED">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2EEA5719-BB98-442F-A537-7981C37983B9" />
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="CK_PDP_NOT_SELF" directorySegmentName="seg_0" id="395C83C3-6E9E-42B0-83A5-64FF75EA73D2">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<rule>PROCEDURE_ID &lt;&gt; REQUIRED_PROCEDURE_ID</rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CK_PDP_IS_BLOCKING" directorySegmentName="seg_0" id="667E399C-056B-46B4-B069-D66A9112D0EE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<rule>IS_BLOCKING IN (0, 1)</rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

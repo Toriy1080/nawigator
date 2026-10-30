@@ -1,0 +1,281 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2C51ABBE-74D4-4E11-9389-D1E4E61C1293" name="USER_PROFILES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Client profile (1:1 with USERS); drives plan generation</commentInRDBMS>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="USER_ID" id="8DDC81D7-0384-406F-A7B0-C0A0114D5D95">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>7A56C07A-8E2F-48CD-9C17-56AFEDCECBA8</delegate>
+<associations>
+<colAssociation fkAssociation="476D1C0A-0470-467E-9820-CEB2A29D0E4C" referredColumn="7A56C07A-8E2F-48CD-9C17-56AFEDCECBA8" />
+</associations>
+</Column>
+<Column name="COUNTRY_ID" id="9E39221F-C6F2-499A-9F23-599E6A259745">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Nationality - mandatory</commentInRDBMS>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>F1DB4032-EB57-40DA-A272-8C180EA77556</delegate>
+<associations>
+<colAssociation fkAssociation="1F73F9D4-297A-472F-88A7-3569E12C18FE" referredColumn="F1DB4032-EB57-40DA-A272-8C180EA77556" />
+</associations>
+</Column>
+<Column name="RESIDENCE_BASIS_ID" id="B164AA4C-31E2-46A4-AFD9-BC6C3DF80C66">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>EFD122DA-F93B-447A-8B3B-A6CD0636FE04</delegate>
+<associations>
+<colAssociation fkAssociation="3CA642E8-9471-4880-AB5A-AB146CDCE208" referredColumn="EFD122DA-F93B-447A-8B3B-A6CD0636FE04" />
+</associations>
+</Column>
+<Column name="RESIDENCE_PURPOSE_ID" id="CC2328AD-A915-42C0-A7D3-A4D074A42F73">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>A2D8A0A2-C10C-4556-B9B7-507913BBEBC7</delegate>
+<associations>
+<colAssociation fkAssociation="AC625A62-AEC3-4028-BE8E-2C98B2CD1289" referredColumn="A2D8A0A2-C10C-4556-B9B7-507913BBEBC7" />
+</associations>
+</Column>
+<Column name="EMPLOYMENT_TYPE_ID" id="E77757DE-9447-4F3B-928F-3A4C62F751A5">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>381D004B-92A7-43D7-9AD9-33E79B7D360E</delegate>
+<associations>
+<colAssociation fkAssociation="6F1CC36D-B17A-43D4-8376-DC5089E42877" referredColumn="381D004B-92A7-43D7-9AD9-33E79B7D360E" />
+</associations>
+</Column>
+<Column name="LANGUAGE_ID" id="174CD41C-6F6B-4A65-9E51-275E944CA6FF">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Preferred interface language</commentInRDBMS>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>CB72962B-E200-43D5-A83D-9B8F1388CE8F</delegate>
+<associations>
+<colAssociation fkAssociation="59AE1C46-13F3-4519-A997-26E4E6C53894" referredColumn="CB72962B-E200-43D5-A83D-9B8F1388CE8F" />
+</associations>
+</Column>
+<Column name="SITUATION_ID" id="BCEBB051-2C02-4833-91F8-5B2276F0D4D8">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Chosen life situation</commentInRDBMS>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>56D0BC88-1C53-4412-BB3D-F22EAD53FDA9</delegate>
+<associations>
+<colAssociation fkAssociation="EC581368-7E86-41DC-B345-821248B3B6F6" referredColumn="56D0BC88-1C53-4412-BB3D-F22EAD53FDA9" />
+</associations>
+</Column>
+<Column name="ARRIVAL_DATE" id="485F5F1A-C1E0-4469-B692-9CF0496F75D0">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Anchor for deadlines counted from arrival</commentInRDBMS>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPDATED_AT" id="A72F9E9C-4885-4FA1-8D3D-6127F59550FB">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>SYSTIMESTAMP</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E1F88C5B-2EFA-4A86-B6DE-9F2ACE9F49FF" name="PK_USER_PROFILES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8DDC81D7-0384-406F-A7B0-C0A0114D5D95" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="87CAAE58-2D5D-46A2-9D2A-18D179B7AB35" name="IDX_UPR_COUNTRY">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9E39221F-C6F2-499A-9F23-599E6A259745" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ACD3D55D-71CD-4497-8379-A882A980DE7F" name="IDX_UPR_RESIDENCE_BASIS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B164AA4C-31E2-46A4-AFD9-BC6C3DF80C66" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="33891C0B-09B4-44CB-8241-C25BAC375BDA" name="IDX_UPR_RESIDENCE_PURPOSE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CC2328AD-A915-42C0-A7D3-A4D074A42F73" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="62AB479E-ECAB-4A3E-98ED-E74EC9B732AB" name="IDX_UPR_EMPLOYMENT_TYPE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E77757DE-9447-4F3B-928F-3A4C62F751A5" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ECA985ED-4EEA-4C5A-94DD-71DD5AE1A7A7" name="IDX_UPR_LANGUAGE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="174CD41C-6F6B-4A65-9E51-275E944CA6FF" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DDC54390-9D51-4192-BC8D-48C6C6E49EA2" name="IDX_UPR_SITUATION">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BCEBB051-2C02-4833-91F8-5B2276F0D4D8" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A53F63F6-C36C-44FB-B644-4852F2BB4703" name="FK_UPR_USER">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8DDC81D7-0384-406F-A7B0-C0A0114D5D95" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4CD438E0-4CD6-48C3-9E8F-AB635DC7BE4B" name="FK_UPR_COUNTRY">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9E39221F-C6F2-499A-9F23-599E6A259745" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9B8DDAA8-F5A6-4530-AB96-551387A0EC96" name="FK_UPR_RESIDENCE_BASIS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B164AA4C-31E2-46A4-AFD9-BC6C3DF80C66" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="90873BD9-C2A1-444F-8199-F9F29C809626" name="FK_UPR_RESIDENCE_PURPOSE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CC2328AD-A915-42C0-A7D3-A4D074A42F73" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="140D86D4-F426-41EC-B98A-355AA03CAAF3" name="FK_UPR_EMPLOYMENT_TYPE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E77757DE-9447-4F3B-928F-3A4C62F751A5" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="60000DD5-BC1F-40DE-9951-EDFD9A75D286" name="FK_UPR_LANGUAGE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="174CD41C-6F6B-4A65-9E51-275E944CA6FF" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="26A7F32F-0169-4393-8D8F-465F086F4979" name="FK_UPR_SITUATION">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BCEBB051-2C02-4833-91F8-5B2276F0D4D8" />
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CB177619-4AE6-436C-B8B0-F3F2B4FA94AE" name="DOCUMENT_ISSUERS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Where a document can be obtained</commentInRDBMS>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DOCUMENT_ID" id="76C8B23A-5143-4FCC-B912-4007E2E55589">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>F8731559-BFF4-48F2-BB59-236F73EA5A87</delegate>
+<associations>
+<colAssociation fkAssociation="E286AE72-53EA-43B3-9F45-6164FDB8AABF" referredColumn="F8731559-BFF4-48F2-BB59-236F73EA5A87" />
+</associations>
+</Column>
+<Column name="INSTITUTION_ID" id="CB6A51AB-92A3-425F-84E9-7492D4D3D09E">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>9E5346A8-4949-4828-B0A0-190A024A90CC</delegate>
+<associations>
+<colAssociation fkAssociation="75092AF1-4D17-47D8-86AF-CC3EE2FA2513" referredColumn="9E5346A8-4949-4828-B0A0-190A024A90CC" />
+</associations>
+</Column>
+<Column name="NOTE" id="9E65999F-F05E-48A8-9533-B7B89E6B635C">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="45F846CE-C0EB-414D-AC67-3C52FA49E542" name="PK_DOCUMENT_ISSUERS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="76C8B23A-5143-4FCC-B912-4007E2E55589" />
+<colUsage columnID="CB6A51AB-92A3-425F-84E9-7492D4D3D09E" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D2E3B36F-09D8-48CC-91C1-2E8077D0641D" name="IDX_DIS_INSTITUTION">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CB6A51AB-92A3-425F-84E9-7492D4D3D09E" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="076C16A3-350A-4DBF-988E-F0EA82B9BA5B" name="FK_DIS_DOCUMENT">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="76C8B23A-5143-4FCC-B912-4007E2E55589" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="52E20D28-7E8F-47E6-A06E-8BAD5B522FFD" name="FK_DIS_INSTITUTION">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CB6A51AB-92A3-425F-84E9-7492D4D3D09E" />
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

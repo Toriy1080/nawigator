@@ -1,0 +1,235 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A60AE045-8B2D-41D2-AB78-1AC6CEF9E8CA" name="AVAILABILITY_RULES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>Who a procedure applies to; NULL axis = any value</commentInRDBMS>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="108186CF-370B-4C3A-8CC0-8FEE12BF4F3B">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementGenerateAlways>false</autoIncrementGenerateAlways>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROCEDURE_ID" id="C732B981-D98E-49E9-ACDA-DC21D26DCCF6">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>8882476B-45BF-46BF-A6B5-7B9122FC899F</delegate>
+<associations>
+<colAssociation fkAssociation="87C313EE-4F82-45FA-B20D-60EE8F450333" referredColumn="8882476B-45BF-46BF-A6B5-7B9122FC899F" />
+</associations>
+</Column>
+<Column name="CITIZENSHIP_GROUP_ID" id="CF75E040-FA1D-4A7C-B8CD-190234EDFE3A">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>E46D51DC-B8CD-4CD0-8D1D-C21EA4FC0EF4</delegate>
+<associations>
+<colAssociation fkAssociation="7C5C46CB-E7EC-48B1-9197-631167477012" referredColumn="E46D51DC-B8CD-4CD0-8D1D-C21EA4FC0EF4" />
+</associations>
+</Column>
+<Column name="RESIDENCE_BASIS_ID" id="AF04FBD2-567D-4DAF-80A7-F96661B4C584">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>EFD122DA-F93B-447A-8B3B-A6CD0636FE04</delegate>
+<associations>
+<colAssociation fkAssociation="7ADD4534-6256-40C9-90B3-F9C7004BD823" referredColumn="EFD122DA-F93B-447A-8B3B-A6CD0636FE04" />
+</associations>
+</Column>
+<Column name="RESIDENCE_PURPOSE_ID" id="16EB2359-11CC-4C64-B942-EDAB367CC2B4">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>A2D8A0A2-C10C-4556-B9B7-507913BBEBC7</delegate>
+<associations>
+<colAssociation fkAssociation="50655DBF-9E5B-49E4-8C20-CCB4716771D0" referredColumn="A2D8A0A2-C10C-4556-B9B7-507913BBEBC7" />
+</associations>
+</Column>
+<Column name="EMPLOYMENT_TYPE_ID" id="6B53ECF5-6674-44CB-86D7-8E97747556D5">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+<delegate>381D004B-92A7-43D7-9AD9-33E79B7D360E</delegate>
+<associations>
+<colAssociation fkAssociation="5638C079-47C2-43E5-AC45-038F0D5F89B0" referredColumn="381D004B-92A7-43D7-9AD9-33E79B7D360E" />
+</associations>
+</Column>
+<Column name="IS_ALLOWED" id="5105FFBC-3DC7-497C-97AE-737DB5BE3BAE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<commentInRDBMS>0 = explicit exclusion</commentInRDBMS>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>1</defaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DE04248B-D49B-4285-9DA9-0B3435051F1E" name="PK_AVAILABILITY_RULES">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="108186CF-370B-4C3A-8CC0-8FEE12BF4F3B" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A7B2A186-3D91-4E5E-9F15-A68EC6A231D5" name="IDX_AVR_PROCEDURE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C732B981-D98E-49E9-ACDA-DC21D26DCCF6" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="82080A9B-1289-4299-A87D-7A1B87B8B15D" name="IDX_AVR_CITIZENSHIP_GROUP">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CF75E040-FA1D-4A7C-B8CD-190234EDFE3A" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E713F4DD-B5AE-4681-BCB2-F35A2FE85224" name="IDX_AVR_RESIDENCE_BASIS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AF04FBD2-567D-4DAF-80A7-F96661B4C584" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A9ECDC21-882D-4A38-97DC-210EEF6095A5" name="IDX_AVR_RESIDENCE_PURPOSE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="16EB2359-11CC-4C64-B942-EDAB367CC2B4" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EB63318F-1E91-4DE2-993C-F34799D6897B" name="IDX_AVR_EMPLOYMENT_TYPE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B53ECF5-6674-44CB-86D7-8E97747556D5" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DD51875B-32B7-49C2-83D0-36118F549709" name="FK_AVR_PROCEDURE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C732B981-D98E-49E9-ACDA-DC21D26DCCF6" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A1B5EFEC-8F7C-4E0C-AD76-E67EC336C899" name="FK_AVR_CITIZENSHIP_GROUP">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CF75E040-FA1D-4A7C-B8CD-190234EDFE3A" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="573EF19B-322A-4265-9D0C-17143A6219BF" name="FK_AVR_RESIDENCE_BASIS">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AF04FBD2-567D-4DAF-80A7-F96661B4C584" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="60CA9A76-E28C-4602-956F-9A61856AA30E" name="FK_AVR_RESIDENCE_PURPOSE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="16EB2359-11CC-4C64-B942-EDAB367CC2B4" />
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="72E5C944-21B9-4A77-960D-72B4181A1E97" name="FK_AVR_EMPLOYMENT_TYPE">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B53ECF5-6674-44CB-86D7-8E97747556D5" />
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="CK_AVR_IS_ALLOWED" directorySegmentName="seg_0" id="20DE240A-40BC-464A-8DAA-1B85BEFE0698">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<rule>IS_ALLOWED IN (0, 1)</rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

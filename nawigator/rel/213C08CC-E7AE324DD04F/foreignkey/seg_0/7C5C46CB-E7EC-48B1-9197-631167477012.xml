@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="7C5C46CB-E7EC-48B1-9197-631167477012" name="FK_AVR_CITIZENSHIP_GROUP">
+<createdBy>toriy</createdBy>
+<createdTime>2026-10-30 15:23:39 UTC</createdTime>
+<ownerDesignName>nawigator</ownerDesignName>
+<containerWithKeyObject>A60AE045-8B2D-41D2-AB78-1AC6CEF9E8CA</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>A1B5EFEC-8F7C-4E0C-AD76-E67EC336C899</localFKIndex>
+<keyObject>533E7CEA-84A5-466F-ADA5-DE5899727843</keyObject>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

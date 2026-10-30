@@ -1,0 +1,4 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="main_view" objectID="01ECCFDC-D17B-4668-8300-E1D5E09204E1" name="Nawigator" visible="true"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>
